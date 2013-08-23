@@ -84,9 +84,21 @@ print_r($_POST);
 				<h3 id="myModalLabel">Umfrage beenden</h3>
 			</div>
 			<div class="modal-body">
-				<p>
-				<input id="name" name="name" type="text" placeholder="Ihr Name">
-				<input id="email" name="email" type="email" placeholder="Ihre E-Mail Adresse">
+			
+			<div class="control-group">
+              <label for="inputEmail" class="control-label">Email</label>
+              <div class="controls">
+                <input type="text" placeholder="Email" id="inputEmail">
+              </div>
+            </div>
+			
+			<div class="control-group">
+              <label for="inputEmail" class="control-label">Email</label>
+              <div class="controls">
+                <input type="text" placeholder="Email" id="inputEmail">
+              </div>
+            </div>
+
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Schliessen</button>
