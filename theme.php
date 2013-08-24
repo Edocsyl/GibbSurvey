@@ -17,6 +17,8 @@ print_r($_POST);
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/nprogress.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 	<link href="js/prettyCheckable/prettyCheckable.css" rel="stylesheet">
 
     <!-- Fav and touch icons -->
@@ -84,20 +86,8 @@ print_r($_POST);
 				<h3 id="myModalLabel">Umfrage beenden</h3>
 			</div>
 			<div class="modal-body">
-			
-			<div class="control-group">
-              <label for="inputEmail" class="control-label">Email</label>
-              <div class="controls">
-                <input type="text" placeholder="Email" id="inputEmail">
-              </div>
-            </div>
-			
-			<div class="control-group">
-              <label for="inputEmail" class="control-label">Email</label>
-              <div class="controls">
-                <input type="text" placeholder="Email" id="inputEmail">
-              </div>
-            </div>
+				<input type="email" name="email" placeholder="E-Mail Adresse">
+				<input type="text" name="name" placeholder="Name">
 
 			</div>
 			<div class="modal-footer">
@@ -118,17 +108,19 @@ print_r($_POST);
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap-maxlength.js"></script>
+    <script src="js/nprogress.js"></script>
     <script src="js/prettyCheckable/prettyCheckable.js"></script>
     <script>
 	$().ready(function(){
 		
 		$('textarea#message').maxlength({
-		threshold: 40
+			threshold: 40
 		});
 	
 		$('input.myClass').prettyCheckable();
-		
 	});
+	
+    //NProgress.start();
 	</script>
   </body>
 </html>
