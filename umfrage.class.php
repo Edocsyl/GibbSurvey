@@ -8,11 +8,14 @@
 			$this->_filepath = $filepath;
 		}
 		
+		/*
+		
 		public function wUmfrageRecord($data){
 			$file_handler = fopen($this->_filepath, 'a') or die("can't open file");
 			fwrite($file_handler, "\n" . $data);
 			fclose($file_handler);
 		}
+		
 		
 		public function rUmfragen(){
 			$data = array();
@@ -36,8 +39,9 @@
 
 			return $data;
 		}
+		*/
 		
-		public function getUmfragen(){
+		public function umfrageObj(){
 		
 			print_r($_POST);
 			
@@ -100,7 +104,7 @@
 			}
 			return $umfragen;
 		}
-		
+
 	
 	}
 

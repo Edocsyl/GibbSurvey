@@ -17,9 +17,23 @@
         padding-bottom: 40px;
         background-color: #f5f5f5;
       }
-
+	  .container-narrow {
+	    margin: 0 auto;
+	    max-width: 550px;
+	    margin-bottom: 50px;
+	    padding: 10px 10px 10px;
+	    background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	}
+	
       .form-signin {
-        max-width: 300px;
+        max-width: 450px;
         padding: 19px 29px 29px;
         margin: 0 auto 20px;
         background-color: #fff;
@@ -35,7 +49,7 @@
       .form-signin .checkbox {
         margin-bottom: 10px;
       }
-      .form-signin input[type="text"],
+      .form-signin input[type="email"],
       .form-signin input[type="password"] {
         font-size: 16px;
         height: auto;
@@ -60,14 +74,18 @@
   </head>
 
   <body>
-
     <div class="container">
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Willkommen</h2><p class="lead">Bitte loggen Sie sich ein.</p>
-        <input type="text" name="username" class="input-block-level" placeholder="Benutzername">
-        <input type="password" name="password" class="input-block-level" placeholder="Passwort">
+      <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">Willkommen bei GibbSurvey</h2><p class="lead">Um die Umfrage zu starten, bitten wir Sie sich einzuloggen.</p>
+        <input type="email" name="email" id="email" class="input-block-level" placeholder="E-Mail Adresse" required>
+        <input type="password" name="password" class="input-block-level" placeholder="Passwort" required>
         <button class="btn btn-large btn-primary" type="submit">Einloggen</button>
+        
+         <div class="control-group">
+        <br />
+         <p>Falls Sie noch kein GibbSurvey Login haben, <a href="/login">hier</a> klicken.</p>
+         </div>
       </form>
 
     </div> <!-- /container -->
