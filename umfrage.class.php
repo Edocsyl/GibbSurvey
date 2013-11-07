@@ -24,7 +24,7 @@
 
 				if($firstLine) { $firstLine = false; continue; }
 
-				$row = explode('¢', $line);
+				$row = explode('|', $line);
 
 				$data[] = array(
 				'id' => (int)$row[0],

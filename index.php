@@ -9,6 +9,7 @@ print_r($u->rUmfragen());
 echo '</pre>';
 
 
+
 //$u->wUmfrageRecord("asdasdasd");
 
 ?>

@@ -1,15 +1,13 @@
 <?php
 require 'umfrage.class.php';
-$u = new umfrage('u_umfragen.dat');
-$umfragen = $u->rUmfragen();
 
-print_r($_POST);
+//print_r($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Umfrage | <?php echo '#'.$umfragen[0]['id'] . ' ' . $umfragen[0]['titel'] ?></title>
+    <title>Umfrage | $NAME </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -37,46 +35,46 @@ print_r($_POST);
 	<form action="" method="POST">
 	
 	<div class="page-header">
-          <h1><?php echo '#'.$umfragen[0]['id'] . ' ' . $umfragen[0]['titel'] ?></h1>
+          <h1>$UMFRAGE_NAME</h1>
         </div>
-		<p class="lead"><?php echo $umfragen[0]['beschreibung'] ?></p>
+		<p class="lead">$UMFRAGE_BESCHREIBUNG</p>
 		<hr>
 		
-		<?php
-			$i = 1;
-			foreach($umfragen[0]['fragen'] as $frage){
-		?>
+		<div class="row">
+		<div class="span4">
+		<h3>$FRAGE_KATEGORIE</h3>
+		</div>
+		</div>
 		
 		<div class="row">
 		<div class="span3">
-		<strong>#<?php echo $i ?></strong> <?php echo $frage ?>
+		<strong># $FRAGE_NUMMER</strong> $FRAGE
 		</div>
-		<div class="span3">
-		 <textarea id="message" name="answer<?php echo $i ?>" class="span5" placeholder="Ihre Antwort" rows="3" maxlength="190"></textarea>
+		<div class="span4">
+			<input type="radio" class="umfrage" value="yes" id="1" name="1" data-label="0%"/>
+			<input type="radio" class="umfrage" value="yes" id="1" name="1" data-label="25%"/>
+			<input type="radio" class="umfrage" value="yes" id="1" name="1" data-label="75%"/>
+			<input type="radio" class="umfrage" value="yes" id="1" name="1" data-label="100%"/>
 		</div>
 		</div>
 		<hr>
-		
-		<?php
-			$i++;
-			}
-		?>
 		
 		<div class="row">
 		<div class="span3">
-		<strong>#300</strong> Was frage..
+		<strong># $FRAGE_NUMMER</strong> $FRAGE
 		</div>
-		<div class="span3">
-		 <input type="checkbox" class="myClass" value="yes" id="answer" name="answer" data-label="Facebook"/>
-		 <input type="checkbox" class="myClass" value="yes" id="answer" name="answer" data-label="Google+"/>
-		 <input type="checkbox" class="myClass" value="yes" id="answer" name="answer" data-label="Netlog"/>
-			
+		<div class="span4">
+			<input type="radio" class="umfrage" value="yes" id="2" name="2" data-label="0%"/>
+			<input type="radio" class="umfrage" value="yes" id="2" name="2" data-label="25%"/>
+			<input type="radio" class="umfrage" value="yes" id="2" name="2" data-label="75%"/>
+			<input type="radio" class="umfrage" value="yes" id="2" name="2" data-label="100%"/>
 		</div>
 		</div>
 		<hr>
+
 		
 		<div class="controls">
-		<button href="#submitSurvey" type="submit" data-toggle="modal" class="btn btn-primary input-medium pull-right">Weiter</button>
+		<button href="#submitSurvey" type="submit" data-toggle="modal" class="btn btn-primary input-medium pull-right">Umfrage beenden</button>
 		</div>
 		
 		
@@ -117,7 +115,7 @@ print_r($_POST);
 			threshold: 40
 		});
 	
-		$('input.myClass').prettyCheckable();
+		$('input.umfrage').prettyCheckable();
 	});
 	
     //NProgress.start();
