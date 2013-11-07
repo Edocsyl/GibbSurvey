@@ -1,2 +1,23 @@
-T:Soziale Netzwerke
-D:
+H;Personal Survey
+D;In dieser Umfrage möchten wir mehr über Sie erfahren. Danke für ihr Kooperation.
+
+
+C;Essen
+Q;War für sie das Essen vielseitig? 
+Q;Essen Sie jeden Tag Salat?
+
+
+C;Personal
+Q;Nehmen Sie das Personal als freundlich wahr? 
+Q;Kann Ihnen da Personal bei Fragen weiterhelfen?
+Q;Fühlen Sie sich wohl in dieser Atmosphäre?
+
+
+C;Hilfsmittel
+Q;Stehen Ihnen genügend Hilfsmittel für den Alltag zur Verfügung? 
+Q;Wenn Sie weitere Hilfsmittel wünschen, wird ihrem Wunsch entsprochen?
+
+
+C;Wirtschaft
+Q;Wird sich die Wirtschaft in den nächsten Jahren positiv entwickeln?
+Q;Werden Sie in den nächsten Jahren Aktien kaufen?
