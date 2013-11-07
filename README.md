@@ -1,4 +1,4 @@
-Survey-Tool
+GibbSurvey
 ===========
 
-Survey Tool (School project)
+GibbSurvey (School project)
