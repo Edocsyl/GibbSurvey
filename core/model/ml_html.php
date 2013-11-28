@@ -20,7 +20,7 @@ class ml_html{
 		
 		$search = array('|{title}|', '|{css_path}|', '|{js_path}|');
 		
-		$replace = array('Hallo Shit', $this->_ml_config->getCssPath(), $this->_ml_config->getJsPath());
+		$replace = array($this->_ml_config->getPageTitle(), $this->_ml_config->getCssPath(), $this->_ml_config->getJsPath());
 		
 
 		

@@ -2,15 +2,15 @@
 
 class ml_config{
 	
-	private $_basepath = null;
+	private $_cg_global = null;
 	
-	public function __construct($basepath){
-		$this->_basepath = $basepath;
+	public function __construct($cg_global){
+		$this->_cg_global = $cg_global;
 
 	}
 	
 	public function getTemplatePath(){
-		return "core/template/";
+		return $this->_cg_global['corepath'];
 	}
 	
 	public function getCssPath(){
@@ -35,6 +35,10 @@ class ml_config{
 	
 	public function getFooterPath(){
 		return $this->getHtmlpath() . 'footer.php';
+	}
+	
+	public function getPageTitle(){
+		return $this->_cg_global['title'];
 	}
 	
 }

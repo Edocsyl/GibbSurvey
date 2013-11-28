@@ -29,7 +29,7 @@ $cd = new cr_database($cg_db);
 $mq = new ml_querys($cd);
 
 
-$mc = new ml_config($basepath);
+$mc = new ml_config($cg_global);
 
 $mh = new ml_html($mc);
 

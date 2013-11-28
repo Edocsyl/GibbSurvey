@@ -11,18 +11,14 @@ RewriteRule ^/?(login)$ registrieren.php [L]
 RewriteRule ^/?(umfrage|u)/?([a-z0-9]+)$ umfrage.php?u=$2 [L]
 
 
+
+
+
+
 #RewriteRule ^/?(login)/?([0-9]+)$ invoice.php?invoicenr=$2 [L]
-
-
-
-
 #THEME
-
-
 #RewriteRule ^/?(css)/?([a-z._0-9\-]+)$ /css/$2 [L]
-
 #RewriteRule ^/?(js)/?([a-z._0-9\-]+)$ /js/$2 [L]
-
 #RewriteRule ^/?(img)/?([a-z._0-9\-]+)$ /img/$2 [L]
 
 
