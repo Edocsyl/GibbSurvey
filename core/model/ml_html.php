@@ -18,7 +18,15 @@ class ml_html{
 				
 		);
 		
-		$search = array('|{title}|', '|{css_path}|', '|{js_path}|');
+		$search = array(
+				
+				// Variables
+				'|{title}|', 
+		
+				// Paths	
+				'|{css_path}|', 	
+				'|{js_path}|'
+		);
 		
 		$replace = array($this->_ml_config->getPageTitle(), $this->_ml_config->getCssPath(), $this->_ml_config->getJsPath());
 		
