@@ -3,9 +3,10 @@
 			
 		'title' => 'GibbSurvey',
 		
-		'basepath' => 'http://localhost/Survey-Tool/',
+ 		'basepath' 	=> 'http://localhost/Survey-Tool',
+		'copyright'	=> '&copy; 2013 Kaj Bossard',
+		
 
-			
 			
 			
 		//DO NOT EDIT

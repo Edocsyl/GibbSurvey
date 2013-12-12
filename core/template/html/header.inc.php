@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{title}</title>
+    <title><?php echo $this->_config['title']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="<?php echo $config['description']; ?>">
+    <meta name="author" content="<?php echo $config['author']; ?>">
 
     <!-- Le styles -->
-    <link href="{css_path}/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $this->_config['css']; ?>/bootstrap.css" rel="stylesheet">
 
     <!-- Le styles -->
     <style type="text/css">
@@ -41,10 +41,10 @@
     </style>
 
 
-    <link href="{css_path}/bootstrap-responsive.css" rel="stylesheet">
-    <link href="{css_path}/nprogress.css" rel="stylesheet">
-    <link href="{css_path}/style.css" rel="stylesheet">
-	<link href="{js_path}/prettyCheckable/prettyCheckable.css" rel="stylesheet">
+    <link href="<?php echo $this->_config['css']; ?>/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?php echo $this->_config['css']; ?>/nprogress.css" rel="stylesheet">
+    <link href="<?php echo $this->_config['css']; ?>/style.css" rel="stylesheet">
+	<link href="<?php echo $this->_config['js']; ?>/prettyCheckable/prettyCheckable.css" rel="stylesheet">
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
@@ -53,3 +53,17 @@
                     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="ico/favicon.png">
   </head>
+    <body>
+	<div class="container-narrow">
+	<div class="masthead">
+	        <ul class="nav nav-pills pull-right">
+	        
+	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/">Home</a></li>
+	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/about">&Uuml;ber uns</a></li>
+	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/registrieren">Registrieren</a></li>
+	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/login">Login</a></li>
+	          
+	        </ul>
+	        <h3 class="muted"><?php echo $this->_config['title']; ?></h3>
+	      </div>
+	      <hr>

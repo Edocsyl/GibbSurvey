@@ -1,37 +1,26 @@
 <?php
 
 /**
-* @author Kaj Bossard <kaj@edocsyl.ch>
-* @version 0.1
-* @category Init file
-* @copyright Copyright (c) 2013, Edocsyl
-*/
+ * @author Kaj Bossard <kaj@edocsyl.ch>
+ * @version 0.1
+ * @category Init file
+ * @copyright Copyright (c) 2013, gigaIT
+ */
 
 session_start();
 
 date_default_timezone_set('Europe/Zurich');
 
-//config
-require 'config/cg_db.php';
-require 'config/cg_global.php';
 
-//controller
-require 'controller/cr_database.php';
+//Include
 
-//model
-require 'model/ml_querys.php';
-require 'model/ml_html.php';
-require 'model/ml_config.php';
+require 'functions/config.php';
+require 'functions/database.php';
+require 'functions/querys.php';
+require 'functions/navigation.php';
 
+$q = new Querys($config['database']);
 
-$cd = new cr_database($cg_db);
-
-$mq = new ml_querys($cd);
-
-
-$mc = new ml_config($cg_global);
-
-$mh = new ml_html($mc);
-
+$n = new Navigation($config, (isset($_GET['page']) ? $_GET['page'] : null), (isset($_GET['param1']) ? $_GET['param1'] : null), (isset($_GET['param2']) ? $_GET['param2'] : null));
 
 ?>

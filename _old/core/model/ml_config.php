@@ -9,6 +9,14 @@ class ml_config{
 
 	}
 	
+	public function getBasePath(){
+		return $this->_cg_global['basepath'];
+	}
+	
+	public function getCopyRight(){
+		return $this->_cg_global['copyright'];
+	}
+	
 	public function getTemplatePath(){
 		return $this->_cg_global['corepath'];
 	}
@@ -31,6 +39,10 @@ class ml_config{
 	
 	public function getHeaderPath(){
 		return $this->getHtmlpath() . 'header.php';
+	}
+	
+	public function getNavigationPath(){
+		return $this->getHtmlpath() . 'navigation.php';
 	}
 	
 	public function getFooterPath(){
