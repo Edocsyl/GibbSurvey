@@ -5,13 +5,15 @@ class Navigation extends Querys {
 	private $_page = null;
 	private $_param1 = null;
 	private $_param2 = null;
+	private $_param3 = null;
 	private $_post = null;
 	
-	public function __construct($config, $page = null, $param1 = null, $param2 = null, $post){
+	public function __construct($config, $page = null, $param1 = null, $param2 = null, $param3 = null, $post){
 		$this->_config = $config;
 		$this->_page = $page;
 		$this->_param1 = $param1;
 		$this->_param2 = $param2;
+		$this->_param3 = $param3;
 		$this->_post = $post;
 		
 	}
@@ -28,12 +30,14 @@ class Navigation extends Querys {
 					$this->printUmfragen();
 					break;
 			case 'profile':
+				$this->ifLogoutLeave();
 				$this->printProfile();
 				break;
 			case 'about':
 				$this->printAbout();
 				break;
 			case 'login':
+				$this->ifLoginLeave();
 				switch ($this->_param1){
 					case 'post':
 						$this->loginUser($this->_post);
@@ -47,6 +51,7 @@ class Navigation extends Querys {
 					$this->logoutUser();
 					break;
 			case 'register':
+				$this->ifLoginLeave();
 				switch ($this->_param1){
 					case 'post':
 						$this->registerUser($this->_post);
@@ -59,7 +64,18 @@ class Navigation extends Querys {
 			case 'survey':
 					switch ($this->_param1){
 						case 'create':
-							$this->printCreateSurvey();
+							switch ($this->_param2){
+								case null:
+									$this->printCreateSurvey();
+									break;
+								case 'post':
+									$this->createUmfrage($_POST);
+									break;
+								default:
+									$this->printIndex();
+									break;
+							}
+							
 							break;
 						case 'show':
 							//Umfrage Anzeigen
@@ -97,25 +113,21 @@ class Navigation extends Querys {
 	}
 	
 	public function printLogin(){
-	
 		require $this->_config['sites'] . '/login.php';
 	
 	}
 	
 	public function printRegistrieren(){
-	
 		require $this->_config['sites'] . '/registrieren.php';
 	
 	}
 	
 	public function printUmfragen(){
-	
-		require $this->_config['sites'] . '/user.php';
+		require $this->_config['sites'] . '/surveys.php';
 	
 	}
 	
 	public function printProfile(){
-	
 		if($_SESSION['userid'] != null) {
 			
 			$user = $this->getCurrentUser($_SESSION['userid']);

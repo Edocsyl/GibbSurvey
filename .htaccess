@@ -9,11 +9,13 @@ RewriteRule ^/?([a-z]+)/$ index.php?page=$1 [L]
 RewriteRule ^/?([a-z]+)/?([a-z0-9]+)$ index.php?page=$1&param1=$2 [L]
 RewriteRule ^/?([a-z]+)/?([a-z0-9]+)/$ index.php?page=$1&param1=$2 [L]
 
+RewriteRule ^/?([a-z]+)/?([a-z0-9]+)$ index.php?page=$1&param1=$2 [L]
+RewriteRule ^/?([a-z]+)/?([a-z0-9]+)/$ index.php?page=$1&param1=$2 [L]
+
+RewriteRule ^/?([a-z]+)/?([a-z0-9]+)/?([a-z0-9]+)$ index.php?page=$1&param1=$2&param2=$3 [L]
+RewriteRule ^/?([a-z]+)/?([a-z0-9]+)/?([a-z0-9]+)/$ index.php?page=$1&param1=$2&param2=$3 [L]
 
 
-
-
-#RewriteRule ^/?([a-z]+)/?([a-z0-9]+)/?([a-z0-9]+)$ index.php?page=$1&param1=$2&param2=$3 [L]
 
 #RewriteRule ^/?(css)/?([a-z.0-9\-]+)$ /core/template/css/$2 [L]
 #RewriteRule ^/?(js)/?([a-z._0-9\-]+)$ /core/template/js/$2 [L]

@@ -1,7 +1,7 @@
 <form class="form-signin"  method="post" action="<?php echo $this->_config['basepath']; ?>/register/post">
         <p class="lead">Bei GibbSurvey registrieren.</p>
         <input type="text" name="name" class="input-block-level" placeholder="Max Muster" required>
-        <input type="email" name="email" id="email" class="input-block-level" placeholder="info.von.mail@domain.ch" required>
+        <input type="email" name="email" id="email" class="input-block-level" placeholder="ihre-email@domain.ch" required>
         <input type="password" name="password" class="input-block-level" placeholder="Passwort" required>
         <input type="password" name="password2" class="input-block-level" placeholder="Passwort wiederholen" required>
         <div class="control-group">

@@ -3,18 +3,38 @@
 
 class Database {
 	
-	private function pdo (){
+	public function pdo(){
 		$db = new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);
 		return $db;
+	}
+	
+	public function insertDbAndGetLast($query, $parameter){
+		$pdo = $this->pdo();
+		$stm = $pdo->prepare($query);
+		foreach ($parameter as $p){
+			$stm->bindParam($p[0], $p[1], $p[2]);
+		}
+		$stm->execute();
+		
+		return $pdo->lastInsertId();
+	}
+	
+	public function insertDb($query, $parameter){
+		$stm = $this->pdo()->prepare($query);
+		foreach ($parameter as $p){
+			$stm->bindParam($p[0], $p[1], $p[2]);
+		}
+		$stm->execute();
 	}
 
 	public function prep($query, $parameter){
 		$stm = $this->pdo()->prepare($query);
 		foreach ($parameter as $p){
-			$stm->bindValue($p[0], $p[1], $p[2]);
+			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
 		return $stm;
 	}
+
 	
 	public function fetch_assoc($query, $parameter){
 		return $this->prep($query, $parameter)->fetchAll(PDO::FETCH_ASSOC);

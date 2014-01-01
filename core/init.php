@@ -22,7 +22,7 @@ require 'functions/navigation.php';
 
 
 
-$n = new Navigation($config, (isset($_GET['page']) ? $_GET['page'] : null), (isset($_GET['param1']) ? $_GET['param1'] : null), (isset($_GET['param2']) ? $_GET['param2'] : null), $_POST);
+$n = new Navigation($config, (isset($_GET['page']) ? $_GET['page'] : null), (isset($_GET['param1']) ? $_GET['param1'] : null), (isset($_GET['param2']) ? $_GET['param2'] : null), (isset($_GET['param3']) ? $_GET['param3'] : null), $_POST);
 
 
 ?>

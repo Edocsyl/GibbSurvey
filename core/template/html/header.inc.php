@@ -68,6 +68,7 @@
 	          <?php } else {?>
 	          
 	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/surveys">Umfragen</a></li>
+	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/survey/create">Erstellen</a></li>
 	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/profile">Profil</a></li>
 	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/logout">Logout</a></li>
 	          

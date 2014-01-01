@@ -3,6 +3,40 @@
 class Querys extends Functions {
 
 	
+	public function createUmfrage($post){
+		
+		$umfrage_id = $this->addSurvey($_SESSION['userid'], $post['titel'], $post['beschreibung']);
+		
+		foreach ($post as $key => $value){
+			if(preg_match("/^(frage_)([0-9]+)$/", $key)) {
+				$this->addQuestion($umfrage_id, $value);
+			}
+		}
+		$this->addLink($umfrage_id);
+
+		$this->alertSuccess("Umfrage wurde erfolgreich erstellt.");
+	}
+	
+	public function addSurvey($user_id, $titel, $beschreibung){
+		return $this->insertDbAndGetLast("INSERT INTO umfragen (`fk_user`, `titel`, `beschreibung`) VALUES (:fk_user, :titel, :beschreibung)", array(
+				 array(':fk_user', $user_id, PDO::PARAM_INT), array(':titel', $titel, PDO::PARAM_STR), array(':beschreibung', $beschreibung, PDO::PARAM_STR)
+		));	
+		
+	}
+	
+	
+	public function addQuestion($survey_id, $question){
+		$this->insertDb("INSERT INTO fragen (`fk_umfrage`, `frage`) VALUES (:fk_umfrage, :question)", array(
+			array(':fk_umfrage', $survey_id, PDO::PARAM_INT), array(':question', $question, PDO::PARAM_STR)	
+		));
+	}
+	
+	public function addLink($survey_id){
+		$this->insertDb("INSERT INTO links (`fk_umfrage`, `hash`) VALUES (:fk_umfrage, :hash)", array(
+				array(':fk_umfrage', $survey_id, PDO::PARAM_STR), array(':hash', sha1($survey_id . date("d-m-Y H:i:s")), PDO::PARAM_STR)
+		));
+	}
+	
 	public function registerUser($post){
 		
 	

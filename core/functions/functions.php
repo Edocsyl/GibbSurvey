@@ -15,6 +15,20 @@ class Functions extends Database {
 		
 	}
 	
+	public function ifLoginLeave(){
+		if($this->isLoggedIn() != false){
+			header("Location: " . $this->_config['basepath']);
+			exit();
+		}
+	}
+	
+	public function ifLogoutLeave(){
+		if($this->isLoggedIn() == false){
+			header("Location: " . $this->_config['basepath']);
+			exit();
+		}
+	}
+	
 	public function isLoggedIn(){
 		if($_SESSION['userid'] == null){
 			return false;
