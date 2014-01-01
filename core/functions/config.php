@@ -12,11 +12,13 @@ $config = array(
 		'basepath' 		=>	'http://localhost/Survey-Tool',
 		
 		
-		'sites'		=>	'core/template/sites',
-		'html'		=>	'core/template/html',
-		'css'		=>	'core/template/css',
-		'js'		=>	'core/template/js',
-		'img'		=>	'core/template/img',
+		'sites'		=>	'/core/template/sites',
+		'html'		=>	'/core/template/html',
+		'css'		=>	'http://localhost/Survey-Tool/core/template/css',
+		'js'		=>	'http://localhost/Survey-Tool/core/template/js',
+		'img'		=>	'http://localhost/Survey-Tool/core/template/img',
+		
+		
 		
 		'navigation'	=> array (
 				'home'			=> 	'home',

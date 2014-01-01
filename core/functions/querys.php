@@ -1,8 +1,86 @@
 <?php
 
-class Querys extends Database {
+class Querys extends Functions {
 
+	
+	public function registerUser($post){
+		
+	
+		
+	/*	
+		$query = $this->prep("INSERT INTO `users` (`name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (:name, :email, 'asd', 'asd', 'asd')", 
+				array(array(':name', $post['name'], PDO::PARAM_STR), array(':email', $post['email'], PDO::PARAM_STR)));
+		*/
+		
+		/*
+		
+		
+		$test = $this->fetch_assoc("Select * from users", array());
+		
+		var_dump($test);
+		
+		*/
+		
+		$name = $this->make_safe($post['name']);
+		$email = $this->make_safe($post['email']);
+		$password = $this->make_safe(sha1($post['password']));
+		$password2 = $this->make_safe(sha1($post['password2']));
+		$geschlecht = $this->make_safe($post['geschlecht']);
+		$geburtstag = $this->make_safe($post['tag'].'.'.$post['monat'].'.'.$post['jahr']);
+		
+		if($password == $password2 && !$this->emailExists($email)){
+			$this->db_assoc("INSERT INTO `users` (`id`, `name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (NULL, '$name', '$email', '$password', '$geschlecht', '$geburtstag')");
 
+			$this->alertSuccess("Erfolgreich registriert.</div>");
+			
+			header("Location: " . $this->_config['basepath']."/login");
+		} else {
+			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
+		}
+		
+	}
+	
+	public function log($userId, $log){
+		$this->db_assoc("INSERT INTO `log` (`fk_user`, `log`) VALUES ('$userId', '$log')");
+	}
+	
+	public function loginUser($post){
+		$email = $this->make_safe($post['email']);
+		$password = $this->make_safe(sha1($post['password']));
+		$i = $this->get_query_count("SELECT id FROM `users` WHERE `email` = '$email' AND `password` = '$password'");
+		if($i == 1){
+			
+			$this->alertSuccess("Erfolgreich eingeloggt.");
+			
+			$_SESSION['userid'] = $this->getUserIdByEmail($email);
+			
+			$this->log($_SESSION['userid'], "login");
+			
+			header("Location: " . $this->_config['basepath']."/surveys");
+		} else {
+			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
+		}
+		
+	}
+	
+	public function getCurrentUser($id){
+		return $this->db_assoc("SELECT * FROM `users` WHERE `id` = '$id'");
+	}
+	
+	public function getUserIdByEmail($email){
+		$email = $this->make_safe($email);
+		return $this->get_column("SELECT id FROM `users` WHERE `email` = '$email'");
+	}
+	
+	public function emailExists($email){
+		$email = $this->make_safe($email);
+		$i = $this->get_query_count("SELECT id FROM `users` WHERE `email` = '$email'");
+		return ($i >= 1 ? true : false);
+	}
+	
+	
+	//ASDASSSSSSSSSSSSSSSSSSS
+	
 	public function whatToExexute($uid){
 		$uid = $this->make_safe($uid);
 		$i = $this->db_assoc("SELECT ex_commands, del_files, report_system FROM execute WHERE fk_uid = '$uid'");
@@ -24,6 +102,7 @@ class Querys extends Database {
 		$i = $this->get_query_count("SELECT id FROM computers WHERE uid = '$uid'");
 		return ($i == 1 ? true : false);
 	}
+
 
 	public function isSomethingToEx($uid){
 		$uid = $this->make_safe($uid);
@@ -51,7 +130,16 @@ class Querys extends Database {
 		$file = $this->db_assoc("INSERT INTO files (id, name, path, date) VALUES (NULL, '$name', '$path', CURRENT_TIMESTAMP)");
 	}
 
-	//Nicht ganz so safe aber naja
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public function make_safe($variable){
 		return strip_tags(trim(stripslashes($variable)));
 	}

@@ -5,5 +5,6 @@ require 'core/init.php';
 $mn->showPage();
 
 
+
 ?>
 

@@ -3,18 +3,27 @@
 
 class Database {
 	
-	private $config = array();
-
-	public function __construct($config) {
-		$this->config = $config;
-	}
-
 	private function pdo (){
-		$db = new PDO('mysql:host=' . $this->config['host'] . ';dbname=' . $this->config['dbname'], $this->config['username'], $this->config['password']);
+		$db = new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);
 		return $db;
 	}
 
-	private function query($query = null){
+	public function prep($query, $parameter){
+		$stm = $this->pdo()->prepare($query);
+		foreach ($parameter as $p){
+			$stm->bindValue($p[0], $p[1], $p[2]);
+		}
+		return $stm;
+	}
+	
+	public function fetch_assoc($query, $parameter){
+		return $this->prep($query, $parameter)->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	
+	
+	
+	public function query($query = null){
 		return $this->pdo()->query($query);
 	}
 
@@ -45,8 +54,7 @@ class Database {
 	public function get_query_count_return_last($query = null){
 		$pdo = $this->pdo();
 		$query = $pdo->prepare($query);
-		$query->execute();
-			
+		$query->execute();	
 		return $pdo->lastInsertId();
 	}
 
