@@ -24,7 +24,6 @@ class Querys extends Functions {
 		
 	}
 	
-	
 	public function addQuestion($survey_id, $question){
 		$this->insertDb("INSERT INTO fragen (`fk_umfrage`, `frage`) VALUES (:fk_umfrage, :question)", array(
 			array(':fk_umfrage', $survey_id, PDO::PARAM_INT), array(':question', $question, PDO::PARAM_STR)	
@@ -37,15 +36,43 @@ class Querys extends Functions {
 		));
 	}
 	
+	public function getCreatedSurveysFromUser($user_id){
+		 return $this->getArrayAssoc("SELECT a.id, a.titel, l.hash FROM umfragen as a inner join links as l on a.id = l.fk_umfrage  WHERE `fk_user` =:user_id", array(
+		 		array(':user_id', $user_id, PDO::PARAM_INT)
+		 ));
+	}
+	
+	public function getSurveyByHash($hash){
+		return $this->getColumn("SELECT u.id, u.titel,u.beschreibung, u.erstell_datum, l.hash FROM umfragen AS u INNER JOIN links AS l ON u.id = l.fk_umfrage WHERE l.hash =:hash", array(
+				array(':hash', $hash, PDO::PARAM_STR)
+		));
+	}
+	
+	
+	
 	public function registerUser($post){
 		
-	
+		$password = $this->make_safe(sha1($post['password']));
+		$password2 = $this->make_safe(sha1($post['password2']));
+		$geburtstag = $this->make_safe($post['tag'].'.'.$post['monat'].'.'.$post['jahr']);
+
+		if($password == $password2 && !$this->emailExists($post['email'])){
+			
 		
-	/*	
-		$query = $this->prep("INSERT INTO `users` (`name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (:name, :email, 'asd', 'asd', 'asd')", 
-				array(array(':name', $post['name'], PDO::PARAM_STR), array(':email', $post['email'], PDO::PARAM_STR)));
-		*/
+			$insert = $this->insertDb("INSERT INTO `users` (`id`, `name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (NULL, :name, :email, :pw, :geschlecht, :geburtstag)", array(
+					array(':name', $post['name'], PDO::PARAM_STR), array(':email', $post['email'], PDO::PARAM_STR), array(':pw', $password, PDO::PARAM_STR), array(':geschlecht', $post['geschlecht'], PDO::PARAM_STR), array(':geburtstag', $geburtstag, PDO::PARAM_STR)
+			));
+				
+			
+			$this->alertSuccess("Erfolgreich registriert.</div>");
+				
+			header("Location: " . $this->_config['basepath']."/login");
+		} else {
+			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
+		}
 		
+		
+
 		/*
 		
 		
@@ -53,7 +80,7 @@ class Querys extends Functions {
 		
 		var_dump($test);
 		
-		*/
+		
 		
 		$name = $this->make_safe($post['name']);
 		$email = $this->make_safe($post['email']);
@@ -71,11 +98,13 @@ class Querys extends Functions {
 		} else {
 			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
 		}
-		
+		*/
 	}
 	
 	public function log($userId, $log){
-		$this->db_assoc("INSERT INTO `log` (`fk_user`, `log`) VALUES ('$userId', '$log')");
+		$this->insertDb("INSERT INTO `log` (`fk_user`, `log`) VALUES (:user_id, :log)", array(
+				array(':user_id', $userId, PDO::PARAM_STR), array(':log', $log, PDO::PARAM_STR)
+		));
 	}
 	
 	public function loginUser($post){

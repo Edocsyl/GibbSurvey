@@ -1,17 +1,27 @@
-<p>An folgenden Umfragen haben Sie bereits Teilgenommen</p>
+    <p class="lead">Ihre Umfragen</p>
 	 
-	 <table class="table table-hover">
-              <thead>
+	 <ul class="nav nav-tabs" id="umfragen">
+    <li><a href="#erstellt" data-toggle="tab">Erstellte Umfragen</a></li>
+    <li><a href="#teilgenommen" data-toggle="tab">Teilgenommene Umfragen</a></li>
+    </ul>
+    
+    <div class="tab-content">
+    <div class="tab-pane active" id="erstellt">
+    
+    <table class="table table-hover">
+      <thead>
                 <tr>
                   <th>#</th>
                   <th>Umfrage</th>
                   <th>Teilnahmen</th>
-                  <th>Link</th>
+                  <th>Umfrage Link</th>
                   <th>Resultat</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+              
+              <!-- 
+              <tr>
                   <td>1</td>
                   <td>Wie finden Sie die Gibb.</td>
                   <td>32</td>
@@ -31,6 +41,30 @@
                   <td>333</td>
                   <td>Link</td>
                   <td><a class="btn btn-small btn-success" type="button">Resultat einsehen</a></td>
+                </tr>  -->
+                
+                
+			<?php foreach ($surveys as $survey) { ?>
+            
+            	<tr>
+                  <td><?php echo $survey['id'] ?></td>
+                  <td><?php echo $survey['titel'] ?></td>
+                  <td></td>
+                  
+                  
+                  
+                  <td><a href="<?php echo $this->_config['basepath'] . "/survey/fill/" . $survey['hash'] ?>">Link...</a></td>
+                  <td><a href="<?php echo $this->_config['basepath'] . "/survey/show/" . $survey['hash'] ?>" class="btn btn-small btn-success" type="button">Resultat einsehen</a></td>
                 </tr>
+              
+			<?php } ?>        
+                
               </tbody>
             </table>
+            </div>
+    <div class="tab-pane" id="teilgenommen">Teilgenommen</div>
+    </div>
+    
+    
+	 
+	 

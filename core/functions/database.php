@@ -4,8 +4,7 @@
 class Database {
 	
 	public function pdo(){
-		$db = new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);
-		return $db;
+		return new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);
 	}
 	
 	public function insertDbAndGetLast($query, $parameter){
@@ -25,6 +24,8 @@ class Database {
 			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
 		$stm->execute();
+		
+		return $stm;
 	}
 
 	public function prep($query, $parameter){
@@ -32,16 +33,28 @@ class Database {
 		foreach ($parameter as $p){
 			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
+		
 		return $stm;
 	}
 
 	
-	public function fetch_assoc($query, $parameter){
-		return $this->prep($query, $parameter)->fetchAll(PDO::FETCH_ASSOC);
+	public function getArrayAssoc($query, $parameter){
+		$stm = $this->prep($query, $parameter);
+		$stm->execute();
+		return $stm->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public function getColumn($query, $parameter){
+		$stm = $this->prep($query, $parameter);
+		$stm->execute();
+		return $stm->fetch(PDO::FETCH_ASSOC);
 	}
 	
 	
 	
+	
+	//OLD
+
 	
 	public function query($query = null){
 		return $this->pdo()->query($query);

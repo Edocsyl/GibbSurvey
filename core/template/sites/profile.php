@@ -1,4 +1,4 @@
-<h3><?php echo $user['name'] ?></h3>
+<p class="lead"><?php echo $user['name'] ?></p>
 
                       
       <table class="table table-condensed table-responsive table-user-information">

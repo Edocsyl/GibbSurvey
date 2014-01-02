@@ -27,7 +27,7 @@ class Navigation extends Querys {
 				$this->printIndex();
 				break;
 			case 'surveys':
-					$this->printUmfragen();
+					$this->printSurveys();
 					break;
 			case 'profile':
 				$this->ifLogoutLeave();
@@ -78,7 +78,7 @@ class Navigation extends Querys {
 							
 							break;
 						case 'show':
-							//Umfrage Anzeigen
+							$this->printSurveyShow($this->_param2);
 							break;
 						case 'post':
 							//Umfrage Auswerten
@@ -122,11 +122,17 @@ class Navigation extends Querys {
 	
 	}
 	
-	public function printUmfragen(){
+	public function printSurveys(){
+		$surveys = $this->getCreatedSurveysFromUser($_SESSION['userid']);
 		require $this->_config['sites'] . '/surveys.php';
 	
 	}
 	
+	public function printSurveyShow($hash){
+		$survey = $this->getSurveyByHash($hash);
+		require $this->_config['sites'] . '/survey_show.php';
+	
+	}
 	public function printProfile(){
 		if($_SESSION['userid'] != null) {
 			
