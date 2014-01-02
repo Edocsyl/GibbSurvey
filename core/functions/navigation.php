@@ -18,6 +18,29 @@ class Navigation extends Querys {
 		
 	}
 	
+	public function initApp(){
+		switch ($this->_page){
+			case 'api':
+				$this->showApi();
+				break;
+			default:
+				$this->showPage();
+				break;
+		}
+	}
+	
+	public function showApi(){
+		$this->ifLogoutLeave();
+		
+		switch ($this->_param1){
+			case 'getsurvey':
+				echo json_encode($this->getSurveyByHash($this->_param2));
+				break;
+			default:
+				break;
+		}
+	}
+	
 	public function showPage(){
 		
 		require $this->_config['html'] . '/header.inc.php';
@@ -64,6 +87,7 @@ class Navigation extends Querys {
 			case 'survey':
 					switch ($this->_param1){
 						case 'create':
+							$this->ifLogoutLeave();
 							switch ($this->_param2){
 								case null:
 									$this->printCreateSurvey();
@@ -78,6 +102,7 @@ class Navigation extends Querys {
 							
 							break;
 						case 'show':
+							$this->ifLogoutLeave();
 							$this->printSurveyShow($this->_param2);
 							break;
 						case 'post':

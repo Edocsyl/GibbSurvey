@@ -37,7 +37,7 @@ class Querys extends Functions {
 	}
 	
 	public function getCreatedSurveysFromUser($user_id){
-		 return $this->getArrayAssoc("SELECT a.id, a.titel, l.hash FROM umfragen as a inner join links as l on a.id = l.fk_umfrage  WHERE `fk_user` =:user_id", array(
+		 return $this->getArrayAssoc("SELECT a.id, a.titel, a.erstell_datum, l.hash FROM umfragen as a inner join links as l on a.id = l.fk_umfrage  WHERE `fk_user` =:user_id", array(
 		 		array(':user_id', $user_id, PDO::PARAM_INT)
 		 ));
 	}
@@ -57,13 +57,11 @@ class Querys extends Functions {
 		$geburtstag = $this->make_safe($post['tag'].'.'.$post['monat'].'.'.$post['jahr']);
 
 		if($password == $password2 && !$this->emailExists($post['email'])){
-			
-		
+
 			$insert = $this->insertDb("INSERT INTO `users` (`id`, `name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (NULL, :name, :email, :pw, :geschlecht, :geburtstag)", array(
 					array(':name', $post['name'], PDO::PARAM_STR), array(':email', $post['email'], PDO::PARAM_STR), array(':pw', $password, PDO::PARAM_STR), array(':geschlecht', $post['geschlecht'], PDO::PARAM_STR), array(':geburtstag', $geburtstag, PDO::PARAM_STR)
 			));
 				
-			
 			$this->alertSuccess("Erfolgreich registriert.</div>");
 				
 			header("Location: " . $this->_config['basepath']."/login");
@@ -71,34 +69,6 @@ class Querys extends Functions {
 			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
 		}
 		
-		
-
-		/*
-		
-		
-		$test = $this->fetch_assoc("Select * from users", array());
-		
-		var_dump($test);
-		
-		
-		
-		$name = $this->make_safe($post['name']);
-		$email = $this->make_safe($post['email']);
-		$password = $this->make_safe(sha1($post['password']));
-		$password2 = $this->make_safe(sha1($post['password2']));
-		$geschlecht = $this->make_safe($post['geschlecht']);
-		$geburtstag = $this->make_safe($post['tag'].'.'.$post['monat'].'.'.$post['jahr']);
-		
-		if($password == $password2 && !$this->emailExists($email)){
-			$this->db_assoc("INSERT INTO `users` (`id`, `name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (NULL, '$name', '$email', '$password', '$geschlecht', '$geburtstag')");
-
-			$this->alertSuccess("Erfolgreich registriert.</div>");
-			
-			header("Location: " . $this->_config['basepath']."/login");
-		} else {
-			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
-		}
-		*/
 	}
 	
 	public function log($userId, $log){

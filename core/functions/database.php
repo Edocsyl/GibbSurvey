@@ -14,7 +14,6 @@ class Database {
 			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
 		$stm->execute();
-		
 		return $pdo->lastInsertId();
 	}
 	
@@ -24,20 +23,9 @@ class Database {
 			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
 		$stm->execute();
-		
 		return $stm;
 	}
 
-	public function prep($query, $parameter){
-		$stm = $this->pdo()->prepare($query);
-		foreach ($parameter as $p){
-			$stm->bindParam($p[0], $p[1], $p[2]);
-		}
-		
-		return $stm;
-	}
-
-	
 	public function getArrayAssoc($query, $parameter){
 		$stm = $this->prep($query, $parameter);
 		$stm->execute();
@@ -50,6 +38,13 @@ class Database {
 		return $stm->fetch(PDO::FETCH_ASSOC);
 	}
 	
+	public function prep($query, $parameter){
+		$stm = $this->pdo()->prepare($query);
+		foreach ($parameter as $p){
+			$stm->bindParam($p[0], $p[1], $p[2]);
+		}
+		return $stm;
+	}
 	
 	
 	
