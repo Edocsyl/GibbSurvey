@@ -53,7 +53,7 @@
                   <td><?= $i ?></td>
                   <td><?= $survey['titel'] ?></td>
                   <td><?= date_format(date_create($survey['erstell_datum']), 'd.m.Y H:i') ?></td>
-                  <td><a href="<?= $this->_config['basepath'] . "/survey/fill/" . $survey['hash'] ?>" target="_blank" class="btn btn-small btn-info" type="button">Umfrage &ouml;ffnen</a></td>
+                  <td><a href="<?= $this->_config['basepath'] . "/s/f/" . $survey['hash'] ?>" target="_blank" class="btn btn-small btn-info" type="button">Umfrage &ouml;ffnen</a></td>
                   <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Resultat einsehen</button></td>
                   <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small">Mehr...</button></td>
                 </tr>

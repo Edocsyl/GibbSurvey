@@ -97,7 +97,7 @@ class Navigation extends Querys {
 						break;
 				}
 				break;
-			case 'survey':
+			case 'survey' || 's':
 					switch ($this->_param1){
 						case 'create':
 							$this->ifLogoutLeave();
@@ -116,7 +116,7 @@ class Navigation extends Querys {
 						case 'post':
 							print_r($_POST);
 							break;
-						case 'fill':
+						case 'fill' || 'f':
 							$this->printSurveyFill($this->_param2);
 							break;
 						default:

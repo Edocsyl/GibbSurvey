@@ -68,7 +68,7 @@
 		</select>
 		</div>
         
-        <button class="btn btn-large btn-primary" type="submit">Registrieren</button>
+        <button class="btn btn-primary pull-right" type="submit">Registrieren</button>
         <div class="control-group">
         <br />
          <p>Falls Sie bereits bei GibbSurvey angemeldet sind, <a href="<?= $this->_config['basepath']; ?>/login">hier</a> klicken.</p>

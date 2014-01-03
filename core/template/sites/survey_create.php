@@ -13,7 +13,7 @@
 </div>
 
 <button class="btn pull-right" type="button" name="addQuestion"><i class="icon-plus"></i></button><br /><br />
-<button class="btn btn-large btn-primary" type="submit">Umfrage erstellen</button>      
+<button class="btn btn-primary pull-right" type="submit">Umfrage erstellen</button>  <br />    
 
 
 <!-- <button class="btn btn-danger" type="button" name="removeQuestion"><i class="icon-remove icon-white"></i></button> -->

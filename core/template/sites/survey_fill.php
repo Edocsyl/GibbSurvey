@@ -20,5 +20,5 @@
 		<?php $i++; } ?>
 		
 
- <button class="btn btn-large btn-primary" type="submit">Umfrage beenden</button>
+ <button class="btn btn-primary pull-right" type="submit">Umfrage beenden</button><br />
 	</form>

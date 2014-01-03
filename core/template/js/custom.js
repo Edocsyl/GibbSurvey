@@ -1,9 +1,17 @@
-$(function () {
+//NProgress.inc();
+$().ready(function(){
+	
 	$('#umfragen a:first').tab('show');
-})
+	
+	$('textarea#message').maxlength({
+		threshold: 40
+	});
 
+	$('input.umfrage').prettyCheckable();
+});
 
 $("button[name^=umfrage_]").click(function(){
+	
 	
 	$('#umfrageBody').empty();
 	$('#umfrageHeader').empty();
@@ -29,8 +37,8 @@ $("button[name^=umfrage_]").click(function(){
 			$('#umfrageBody').append("<p>" + count + ". " + item.frage + "</p>");
 			count++;
 		});
+		
 	});
-	
 });
 
 
@@ -41,11 +49,3 @@ $("button[name='addQuestion']").click(function() {
 });
 
 
-$().ready(function(){
-	
-	$('textarea#message').maxlength({
-		threshold: 40
-	});
-
-	$('input.umfrage').prettyCheckable();
-});

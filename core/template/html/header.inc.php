@@ -57,7 +57,7 @@
 	<div class="container-narrow">
 	<div class="masthead">
 	        <ul class="nav nav-pills pull-right">
-	        <?php if($this->isLoggedIn() == false) { ?>
+	        <?php if(!$this->isLoggedIn()) { ?>
 	        	
 	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/">Home</a></li>
 	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/about">&Uuml;ber uns</a></li>
