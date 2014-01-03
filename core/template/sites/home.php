@@ -3,7 +3,7 @@
 	      <div class="jumbotron">
         <h1>Willkommen bei GibbSurvey</h1>
         <p class="lead">Registrieren Sie sich noch heute und beantworten sie spannende Umfragen.</p>
-        <a href="/registrieren" class="btn btn-large btn-success">Registrieren</a>
+        <a href="<?= $this->_config['basepath']; ?>/register" class="btn btn-large btn-success">Registrieren</a>
       </div>
 	 
 	 <hr>

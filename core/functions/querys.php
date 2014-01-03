@@ -28,7 +28,7 @@ class Querys extends Functions {
 	 * @return string
 	 */
 	public function addSurvey($user_id, $titel, $beschreibung){
-		return $this->insertDbAndGetLast("INSERT INTO umfragen (`fk_user`, `titel`, `beschreibung`) VALUES (:fk_user, :titel, :beschreibung)", array(
+		return $this->insertDbAndGetLast("INSERT INTO umfragen (fk_user, titel, beschreibung) VALUES (:fk_user, :titel, :beschreibung)", array(
 				 array(':fk_user', $user_id, PDO::PARAM_INT), array(':titel', $titel, PDO::PARAM_STR), array(':beschreibung', $beschreibung, PDO::PARAM_STR)
 		));	
 		
@@ -40,7 +40,7 @@ class Querys extends Functions {
 	 * @param unknown $question
 	 */
 	public function addQuestion($survey_id, $question){
-		$this->insertDb("INSERT INTO fragen (`fk_umfrage`, `frage`) VALUES (:fk_umfrage, :question)", array(
+		$this->insertDb("INSERT INTO fragen (fk_umfrage, frage) VALUES (:fk_umfrage, :question)", array(
 			array(':fk_umfrage', $survey_id, PDO::PARAM_INT), array(':question', $question, PDO::PARAM_STR)	
 		));
 	}
@@ -50,7 +50,7 @@ class Querys extends Functions {
 	 * @param unknown $survey_id
 	 */
 	public function addLink($survey_id){
-		$this->insertDb("INSERT INTO links (`fk_umfrage`, `hash`) VALUES (:fk_umfrage, :hash)", array(
+		$this->insertDb("INSERT INTO links (fk_umfrage, hash) VALUES (:fk_umfrage, :hash)", array(
 				array(':fk_umfrage', $survey_id, PDO::PARAM_STR), array(':hash', sha1($survey_id . date("d-m-Y H:i:s")), PDO::PARAM_STR)
 		));
 	}
@@ -110,7 +110,7 @@ class Querys extends Functions {
 
 		if($password == $password2 && !$this->emailExists($post['email'])){
 
-			$insert = $this->insertDb("INSERT INTO `users` (`id`, `name`, `email`, `password`, `geschlecht`, `geburtstag`) VALUES (NULL, :name, :email, :pw, :geschlecht, :geburtstag)", array(
+			$insert = $this->insertDb("INSERT INTO users (name, email, password, geschlecht, geburtstag) VALUES (:name, :email, :pw, :geschlecht, :geburtstag)", array(
 					array(':name', $post['name'], PDO::PARAM_STR), array(':email', $post['email'], PDO::PARAM_STR), array(':pw', $password, PDO::PARAM_STR), array(':geschlecht', $post['geschlecht'], PDO::PARAM_STR), array(':geburtstag', $geburtstag, PDO::PARAM_STR)
 			));
 				
@@ -129,7 +129,7 @@ class Querys extends Functions {
 	 * @param unknown $log
 	 */
 	public function log($userId, $log){
-		$this->insertDb("INSERT INTO `log` (`fk_user`, `log`) VALUES (:user_id, :log)", array(
+		$this->insertDb("INSERT INTO log (fk_user, log) VALUES (:user_id, :log)", array(
 				array(':user_id', $userId, PDO::PARAM_STR), array(':log', $log, PDO::PARAM_STR)
 		));
 	}
@@ -143,9 +143,10 @@ class Querys extends Functions {
 			array(':email', $post['email'], PDO::PARAM_STR), array(':password', sha1($post['password']), PDO::PARAM_STR)	
 		));
 		
-		if($i == 1){
+
+		if($i != null){
 			$this->alertSuccess("Erfolgreich eingeloggt.");
-			$_SESSION['userid'] = $this->getUserIdByEmail($post['email'])['id'];
+			$_SESSION['userid'] = $i;
 			$this->log($_SESSION['userid'], "login");
 			header("Location: " . $this->_config['basepath']."/surveys");
 		} else {

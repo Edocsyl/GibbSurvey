@@ -1,4 +1,4 @@
-<form class="form-signin"  method="post" action="<?= $this->_config['basepath']; ?>/survey/post">
+<form class="form-signin"  method="post" action="<?= $this->_config['basepath']; ?>/survey/create/post">
 
 <p class="lead">Umfrage erstellen</p>
 <input type="text" name="titel" class="input-block-level" placeholder="Titel der Umfrage" required>

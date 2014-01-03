@@ -8,6 +8,8 @@
     <div class="tab-content">
     <div class="tab-pane active" id="erstellt">
     
+    <?php if($surveys != null){ ?>       
+              
     <table class="table table-hover">
       <thead>
                 <tr>
@@ -56,15 +58,16 @@
                   <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small">Mehr...</button></td>
                 </tr>
               
-			<?php $i++; } ?>        
-                
+			<?php $i++; } ?> 
+			
+			  
               </tbody>
             </table>
+            <?php } else { echo "Keine Umfragen"; }?>
             </div>
     <div class="tab-pane" id="teilgenommen">In Process...</div>
     </div>
     
-
 
     <div id="umfragePop" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
