@@ -1,12 +1,21 @@
 <?php
 
-
 class Database {
 	
+	/**
+	 * Initialises the PDO Connection
+	 * @return PDO
+	 */
 	public function pdo(){
 		return new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);
 	}
 	
+	/**
+	 * Insert a statement and returns the id
+	 * @param unknown $query
+	 * @param unknown $parameter
+	 * @return string
+	 */
 	public function insertDbAndGetLast($query, $parameter){
 		$pdo = $this->pdo();
 		$stm = $pdo->prepare($query);
@@ -17,6 +26,12 @@ class Database {
 		return $pdo->lastInsertId();
 	}
 	
+	/**
+	 * Insert a statement
+	 * @param unknown $query
+	 * @param unknown $parameter
+	 * @return PDOStatement
+	 */
 	public function insertDb($query, $parameter){
 		$stm = $this->pdo()->prepare($query);
 		foreach ($parameter as $p){
@@ -25,19 +40,49 @@ class Database {
 		$stm->execute();
 		return $stm;
 	}
-
+	
+	/**
+	 * Executes a sql statement and returns an array
+	 * @param unknown $query
+	 * @param unknown $parameter
+	 * @return multitype:
+	 */
 	public function getArrayAssoc($query, $parameter){
 		$stm = $this->prep($query, $parameter);
 		$stm->execute();
 		return $stm->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
-	public function getColumn($query, $parameter){
+	/**
+	 * Executes a sql statement and returns one row
+	 * @param unknown $query
+	 * @param unknown $parameter
+	 * @return mixed
+	 */
+	public function getRow($query, $parameter){
 		$stm = $this->prep($query, $parameter);
 		$stm->execute();
 		return $stm->fetch(PDO::FETCH_ASSOC);
 	}
 	
+	/**
+	 * Executes a slq statement and returns one column
+	 * @param unknown $query
+	 * @param unknown $parameter
+	 * @return string
+	 */
+	public function getColumn($query, $parameter){
+		$stm = $this->prep($query, $parameter);
+		$stm->execute();
+		return $stm->fetchColumn();
+	}
+	
+	/**
+	 * Helper function to prepare sql statements
+	 * @param unknown $query
+	 * @param unknown $parameter
+	 * @return PDOStatement
+	 */
 	public function prep($query, $parameter){
 		$stm = $this->pdo()->prepare($query);
 		foreach ($parameter as $p){
@@ -46,51 +91,7 @@ class Database {
 		return $stm;
 	}
 	
-	
-	
-	//OLD
-
-	
-	public function query($query = null){
-		return $this->pdo()->query($query);
-	}
-
-	public function db_assoc($query = null){
-		return $this->query($query)->fetch(PDO::FETCH_ASSOC);
-	}
-
-	public function db_num($query = null){
-		return $this->query($query)->fetch(PDO::FETCH_NUM);
-	}
-
-	public function get_array_assoc($query = null){
-		return $this->query($query)->fetchAll(PDO::FETCH_ASSOC);
-	}
-
-	public function get_array_num($query = null){
-		return $this->query($query)->fetchAll(PDO::FETCH_NUM);
-	}
-
-	public function get_column($query = null){
-		return $this->query($query)->fetchColumn();
-	}
-
-	public function get_query_count($query = null){
-		return $this->query($query)->rowCount();
-	}
-
-	public function get_query_count_return_last($query = null){
-		$pdo = $this->pdo();
-		$query = $pdo->prepare($query);
-		$query->execute();	
-		return $pdo->lastInsertId();
-	}
-
-	public function get_last_id(){
-		return $this->pdo()->lastInsertId();
-	}
 
 }
-
 
 ?>
