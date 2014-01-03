@@ -1,4 +1,7 @@
 <?php
+/**
+ * Application configuration
+ */
 $config = array(
 
 		'title' 		=>	'GibbSurvey',
@@ -6,7 +9,7 @@ $config = array(
 		'author' 		=>	'Kaj Bossard',
 
 		
-		'copyright'		=>	'&copy; 2013 Kaj Bossard',
+		'copyright'		=>	'&copy; 2014 Kaj Bossard',
 		
 		
 		'basepath' 		=>	'http://localhost/Survey-Tool',
@@ -17,15 +20,6 @@ $config = array(
 		'css'		=>	'http://localhost/Survey-Tool/core/template/css',
 		'js'		=>	'http://localhost/Survey-Tool/core/template/js',
 		'img'		=>	'http://localhost/Survey-Tool/core/template/img',
-		
-		
-		
-		'navigation'	=> array (
-				'home'			=> 	'home',
-				'about'			=>	'Über uns',
-				'login'			=>	'Login',
-				'registrieren'	=>	'Registrieren'
-		),
 		
 		
 		

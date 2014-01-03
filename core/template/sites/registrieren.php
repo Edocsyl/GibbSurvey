@@ -1,4 +1,4 @@
-<form class="form-signin"  method="post" action="<?php echo $this->_config['basepath']; ?>/register/post">
+<form class="form-signin"  method="post" action="<?= $this->_config['basepath']; ?>/register/post">
         <p class="lead">Bei GibbSurvey registrieren.</p>
         <input type="text" name="name" class="input-block-level" placeholder="Max Muster" required>
         <input type="email" name="email" id="email" class="input-block-level" placeholder="ihre-email@domain.ch" required>
@@ -71,5 +71,5 @@
         <button class="btn btn-large btn-primary" type="submit">Registrieren</button>
         <div class="control-group">
         <br />
-         <p>Falls Sie bereits bei GibbSurvey angemeldet sind, <a href="<?php echo $this->_config['basepath']; ?>/login">hier</a> klicken.</p>
+         <p>Falls Sie bereits bei GibbSurvey angemeldet sind, <a href="<?= $this->_config['basepath']; ?>/login">hier</a> klicken.</p>
          </div>

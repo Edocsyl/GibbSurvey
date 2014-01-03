@@ -16,6 +16,7 @@
                   <th>Erstellt</th>
                   <th>Umfrage Link</th>
                   <th>Resultat</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -47,11 +48,12 @@
 			<?php $i = 1; foreach ($surveys as $survey) { ?>
             
             	<tr>
-                  <td><?php echo $i ?></td>
-                  <td><?php echo $survey['titel'] ?></td>
-                  <td><?php echo date_format(date_create($survey['erstell_datum']), 'd.m.Y H:i') ?></td>
-                  <td><a href="<?php echo $this->_config['basepath'] . "/survey/fill/" . $survey['hash'] ?>" target="_blank" class="btn btn-small btn-success" type="button">Umfrage &ouml;ffnen</a></td>
-                  <td><button name="umfrage_<?php echo $survey['hash'] ?>" uid="<?php echo $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Resultat einsehen</button></td>
+                  <td><?= $i ?></td>
+                  <td><?= $survey['titel'] ?></td>
+                  <td><?= date_format(date_create($survey['erstell_datum']), 'd.m.Y H:i') ?></td>
+                  <td><a href="<?= $this->_config['basepath'] . "/survey/fill/" . $survey['hash'] ?>" target="_blank" class="btn btn-small btn-info" type="button">Umfrage &ouml;ffnen</a></td>
+                  <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Resultat einsehen</button></td>
+                  <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small">Mehr...</button></td>
                 </tr>
               
 			<?php $i++; } ?>        
@@ -59,7 +61,7 @@
               </tbody>
             </table>
             </div>
-    <div class="tab-pane" id="teilgenommen">Teilgenommen</div>
+    <div class="tab-pane" id="teilgenommen">In Process...</div>
     </div>
     
 

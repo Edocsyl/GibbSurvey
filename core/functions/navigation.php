@@ -18,6 +18,9 @@ class Navigation extends Querys {
 		
 	}
 	
+	/**
+	 * Initialises the application
+	 */
 	public function initApp(){
 		switch ($this->_page){
 			case 'api':
@@ -29,6 +32,9 @@ class Navigation extends Querys {
 		}
 	}
 	
+	/**
+	 * Api handler
+	 */
 	public function showApi(){
 		$this->ifLogoutLeave();
 		
@@ -36,11 +42,17 @@ class Navigation extends Querys {
 			case 'getsurvey':
 				echo json_encode($this->getSurveyByHash($this->_param2));
 				break;
+			case 'getquestions':
+				echo json_encode($this->getQuestionByHash($this->_param2));
+				break;
 			default:
 				break;
 		}
 	}
 	
+	/**
+	 * Page handler
+	 */
 	public function showPage(){
 		
 		require $this->_config['html'] . '/header.inc.php';
@@ -50,6 +62,7 @@ class Navigation extends Querys {
 				$this->printIndex();
 				break;
 			case 'surveys':
+					$this->ifLogoutLeave();
 					$this->printSurveys();
 					break;
 			case 'profile':
@@ -93,23 +106,18 @@ class Navigation extends Querys {
 									$this->printCreateSurvey();
 									break;
 								case 'post':
-									$this->createUmfrage($_POST);
+									$this->createSurvey($_POST);
 									break;
 								default:
 									$this->printIndex();
 									break;
 							}
-							
-							break;
-						case 'show':
-							$this->ifLogoutLeave();
-							$this->printSurveyShow($this->_param2);
 							break;
 						case 'post':
-							//Umfrage Auswerten
+							print_r($_POST);
 							break;
 						case 'fill':
-							//Umfrage Anzeigen uns ausfüllen
+							$this->printSurveyFill($this->_param2);
 							break;
 						default:
 							$this->printIndex();
@@ -125,39 +133,61 @@ class Navigation extends Querys {
 	}
 	
 	
+	/**
+	 * Shows the index page
+	 */
 	public function printIndex(){
-		
 		require $this->_config['sites'] . '/home.php';
 		
 	}
 	
+	/**
+	 * Shows the about page
+	 */
 	public function printAbout(){
-	
 		require $this->_config['sites'] . '/about.php';
 	
 	}
 	
+	/**
+	 * Shows the login page
+	 */
 	public function printLogin(){
 		require $this->_config['sites'] . '/login.php';
 	
 	}
 	
+	/**
+	 * Shows the register page
+	 */
 	public function printRegistrieren(){
 		require $this->_config['sites'] . '/registrieren.php';
 	
 	}
 	
+	/**
+	 * Shows the survey fill page
+	 */
+	public function printSurveyFill($hash){
+		$survey = $this->getSurveyByHash($hash);
+		$questions = $this->getQuestionByHash($hash);
+		
+		require $this->_config['sites'] . '/survey_fill.php';
+	
+	}
+	
+	/**
+	 * Shows surveys of a user
+	 */
 	public function printSurveys(){
 		$surveys = $this->getCreatedSurveysFromUser($_SESSION['userid']);
 		require $this->_config['sites'] . '/surveys.php';
 	
 	}
 	
-	public function printSurveyShow($hash){
-		$survey = $this->getSurveyByHash($hash);
-		require $this->_config['sites'] . '/survey_show.php';
-	
-	}
+	/**
+	 * Show the user Profile
+	 */
 	public function printProfile(){
 		if($_SESSION['userid'] != null) {
 			
@@ -170,8 +200,10 @@ class Navigation extends Querys {
 	
 	}
 	
+	/**
+	 * Show the create survey page
+	 */
 	public function printCreateSurvey(){
-		
 		require $this->_config['sites'] . '/survey_create.php';
 	}
 	
