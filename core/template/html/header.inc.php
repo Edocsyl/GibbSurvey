@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php echo $this->_config['title']; ?></title>
+    <title><?= $this->_config['title']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php echo $this->_config['description']; ?>">
-    <meta name="author" content="<?php echo $this->_config['author']; ?>">
+    <meta name="description" content="<?= $this->_config['description']; ?>">
+    <meta name="author" content="<?= $this->_config['author']; ?>">
 
     <!-- Le styles -->
-    <link href="<?php echo $this->_config['css']; ?>/bootstrap.css" rel="stylesheet">
+    <link href="<?= $this->_config['css']; ?>/bootstrap.css" rel="stylesheet">
 
     <!-- Le styles -->
     <style type="text/css">
@@ -41,17 +41,17 @@
     </style>
 
 
-    <link href="<?php echo $this->_config['css']; ?>/bootstrap-responsive.css" rel="stylesheet">
-    <link href="<?php echo $this->_config['css']; ?>/nprogress.css" rel="stylesheet">
-    <link href="<?php echo $this->_config['css']; ?>/style.css" rel="stylesheet">
-	<link href="<?php echo $this->_config['js']; ?>/prettyCheckable/prettyCheckable.css" rel="stylesheet">
+    <link href="<?= $this->_config['css']; ?>/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?= $this->_config['css']; ?>/nprogress.css" rel="stylesheet">
+    <link href="<?= $this->_config['css']; ?>/style.css" rel="stylesheet">
+	<link href="<?= $this->_config['js']; ?>/prettyCheckable/prettyCheckable.css" rel="stylesheet">
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="ico/favicon.png">
+                                   <link rel="shortcut icon" href="<?= $this->_config['img']; ?>/favicon.ico">
   </head>
     <body>
 	<div class="container-narrow">
@@ -59,21 +59,21 @@
 	        <ul class="nav nav-pills pull-right">
 	        <?php if(!$this->isLoggedIn()) { ?>
 	        	
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/">Home</a></li>
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/about">&Uuml;ber uns</a></li>
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/register">Registrieren</a></li>
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/login">Login</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/">Home</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/about">&Uuml;ber uns</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/register">Registrieren</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/login">Login</a></li>
 	          
 	          
 	          <?php } else {?>
 	          
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/surveys">Umfragen</a></li>
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/survey/create">Erstellen</a></li>
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/profile">Profil</a></li>
-	          <li class=""><a href="<?php echo $this->_config['basepath']; ?>/logout">Logout</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/surveys">Umfragen</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/survey/create">Erstellen</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/profile">Profil</a></li>
+	          <li class=""><a href="<?= $this->_config['basepath']; ?>/logout">Logout</a></li>
 	          
 	          <?php }?>
 	        </ul>
-	        <h3 class="muted"><?php echo $this->_config['title']; ?></h3>
+	        <h3 class="muted"><?= $this->_config['title']; ?></h3>
 	      </div>
 	      <hr>

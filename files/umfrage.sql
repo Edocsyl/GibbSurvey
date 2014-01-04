@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Jan 2014 um 12:22
+-- Erstellungszeit: 04. Jan 2014 um 15:35
 -- Server Version: 5.5.32
 -- PHP-Version: 5.4.19
 
@@ -33,13 +33,8 @@ CREATE TABLE IF NOT EXISTS `fragen` (
   `fk_umfrage` int(11) NOT NULL,
   `frage` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
---
--- TRUNCATE Tabelle vor dem Einfügen `fragen`
---
-
-TRUNCATE TABLE `fragen`;
 --
 -- Daten für Tabelle `fragen`
 --
@@ -71,7 +66,11 @@ INSERT INTO `fragen` (`id`, `fk_umfrage`, `frage`) VALUES
 (41, 5, 'Ist es heute schÃ¶n?'),
 (42, 6, 'aiosdasipodjaipodjpasiodj'),
 (43, 6, 'poijmpiojmipojmipojmpoim'),
-(44, 6, 'ompompompompompo');
+(44, 6, 'ompompompompompo'),
+(45, 7, 'Wie finden Sie leed?'),
+(46, 7, 'Was bedeutet ihnen leed?'),
+(47, 7, 'Und nosch weiter scheisse?'),
+(48, 7, 'Tja bitches=?');
 
 -- --------------------------------------------------------
 
@@ -84,13 +83,8 @@ CREATE TABLE IF NOT EXISTS `links` (
   `fk_umfrage` int(11) NOT NULL,
   `hash` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
---
--- TRUNCATE Tabelle vor dem Einfügen `links`
---
-
-TRUNCATE TABLE `links`;
 --
 -- Daten für Tabelle `links`
 --
@@ -101,7 +95,9 @@ INSERT INTO `links` (`id`, `fk_umfrage`, `hash`) VALUES
 (3, 3, '5fa710ac256afd3b78937cd28cfdb2767aede796'),
 (4, 4, '248ea2789e91424a2e19a95bc56c97d6a10967f7'),
 (5, 5, 'f80d1dfb9bcc54321850646f050b2e295fc647df'),
-(6, 6, '2405819ac436bcd80cc466a744da6f3da19ecd06');
+(6, 6, '2405819ac436bcd80cc466a744da6f3da19ecd06'),
+(7, 0, 'ab5d868ae42c9814fef600ca9cbe49cf3360a184'),
+(8, 7, 'e7240813030b6c4e2e2dffaba23040535c2fb7aa');
 
 -- --------------------------------------------------------
 
@@ -115,13 +111,8 @@ CREATE TABLE IF NOT EXISTS `log` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `log` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
---
--- TRUNCATE Tabelle vor dem Einfügen `log`
---
-
-TRUNCATE TABLE `log`;
 --
 -- Daten für Tabelle `log`
 --
@@ -138,7 +129,9 @@ INSERT INTO `log` (`id`, `fk_user`, `timestamp`, `log`) VALUES
 (9, 1, '2014-01-03 19:27:36', 'logout'),
 (10, 1, '2014-01-03 19:27:42', 'login'),
 (11, 1, '2014-01-03 19:34:54', 'logout'),
-(12, 1, '2014-01-03 19:36:40', 'login');
+(12, 1, '2014-01-03 19:36:40', 'login'),
+(13, 1, '2014-01-04 11:25:44', 'logout'),
+(14, 1, '2014-01-04 11:25:53', 'login');
 
 -- --------------------------------------------------------
 
@@ -147,19 +140,14 @@ INSERT INTO `log` (`id`, `fk_user`, `timestamp`, `log`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `resultate` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_umfrage` int(11) NOT NULL,
   `fk_frage` int(11) NOT NULL,
   `fk_user` int(11) NOT NULL,
-  `antwort` varchar(20) NOT NULL,
+  `antwort` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- TRUNCATE Tabelle vor dem Einfügen `resultate`
---
-
-TRUNCATE TABLE `resultate`;
 -- --------------------------------------------------------
 
 --
@@ -173,13 +161,8 @@ CREATE TABLE IF NOT EXISTS `umfragen` (
   `beschreibung` text NOT NULL,
   `erstell_datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
---
--- TRUNCATE Tabelle vor dem Einfügen `umfragen`
---
-
-TRUNCATE TABLE `umfragen`;
 --
 -- Daten für Tabelle `umfragen`
 --
@@ -190,7 +173,8 @@ INSERT INTO `umfragen` (`id`, `fk_user`, `titel`, `beschreibung`, `erstell_datum
 (3, 1, 'Umfrage Nr 2 und so', 'Test woop beschreibung', '2014-01-02 10:40:06'),
 (4, 1, 'Lorem ipsum', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2014-01-02 17:37:45'),
 (5, 1, 'Umfrage der zum Umfrage Tool GibbSurvey', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2014-01-03 14:56:43'),
-(6, 7, 'Eine Umfrage um den shit', 'Hallo wie war es heute oder auch nicht vbli blasd adasd\r\nsfasdfasdf\r\nsdfsdf\r\nasdf', '2014-01-03 15:40:54');
+(6, 7, 'Eine Umfrage um den shit', 'Hallo wie war es heute oder auch nicht vbli blasd adasd\r\nsfasdfasdf\r\nsdfsdf\r\nasdf', '2014-01-03 15:40:54'),
+(7, 1, 'Umrage 1337', 'Leed umfrage', '2014-01-04 14:02:28');
 
 -- --------------------------------------------------------
 
@@ -208,11 +192,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
---
--- TRUNCATE Tabelle vor dem Einfügen `users`
---
-
-TRUNCATE TABLE `users`;
 --
 -- Daten für Tabelle `users`
 --

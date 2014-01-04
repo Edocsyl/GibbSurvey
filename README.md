@@ -9,3 +9,4 @@ Die Hauptaufgaben beinhalten:
 ## Setup ##
 1. config.php entsprechend anpassen
 2. umfrage.sql ausführen
+3. .htaccess entsprechend anpassen

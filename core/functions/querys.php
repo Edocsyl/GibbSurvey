@@ -2,23 +2,6 @@
 
 class Querys extends Functions {
 
-	/**
-	 * Creates a survey
-	 * @param unknown $post
-	 */
-	public function createSurvey($post){
-		
-		$umfrage_id = $this->addSurvey($_SESSION['userid'], $post['titel'], $post['beschreibung']);
-		
-		foreach ($post as $key => $value){
-			if(preg_match("/^(frage_)([0-9]+)$/", $key)) {
-				$this->addQuestion($umfrage_id, $value);
-			}
-		}
-		$this->addLink($umfrage_id);
-
-		$this->alertSuccess("Umfrage wurde erfolgreich erstellt.");
-	}
 	
 	/**
 	 * Adds a survey
@@ -52,6 +35,19 @@ class Querys extends Functions {
 	public function addLink($survey_id){
 		$this->insertDb("INSERT INTO links (fk_umfrage, hash) VALUES (:fk_umfrage, :hash)", array(
 				array(':fk_umfrage', $survey_id, PDO::PARAM_STR), array(':hash', sha1($survey_id . date("d-m-Y H:i:s")), PDO::PARAM_STR)
+		));
+	}
+	
+	/**
+	 * Add a result
+	 * @param unknown $survey_id
+	 * @param unknown $user_id
+	 * @param unknown $question_id
+	 * @param unknown $answer
+	 */
+	public function addResult($survey_id, $user_id, $question_id, $answer = null){
+		$this->insertDb("INSERT INTO resultate (fk_umfrage, fk_frage, fk_user, antwort) VALUES (:survey_id, :question_id, :user_id, :answer)", array(
+				array(':survey_id', $survey_id, PDO::PARAM_INT), array(':question_id', $question_id, PDO::PARAM_INT), array(':user_id', $user_id, PDO::PARAM_INT), array(':answer', $answer, PDO::PARAM_STR)
 		));
 	}
 	

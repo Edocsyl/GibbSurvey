@@ -106,7 +106,7 @@ class Navigation extends Querys {
 									$this->printCreateSurvey();
 									break;
 								case 'post':
-									$this->createSurvey($_POST);
+									$this->printCreateSurveyPost($_POST);
 									break;
 								default:
 									$this->printIndex();
@@ -114,7 +114,7 @@ class Navigation extends Querys {
 							}
 							break;
 						case 'post':
-							print_r($_POST);
+							$this->printSurveyFillPost($_POST);
 							break;
 						case 'fill' || 'f':
 							$this->printSurveyFill($this->_param2);
@@ -172,12 +172,34 @@ class Navigation extends Querys {
 		$survey = $this->getSurveyByHash($hash);
 		$questions = $this->getQuestionByHash($hash);
 		
+		$_SESSION['survey'] = $survey;
 		$_SESSION['questions'] = $questions;
 		
 		require $this->_config['sites'] . '/survey_fill.php';
-		
-		print_r($_SESSION['questions']);
+			
+	}
 	
+	/**
+	 * Show the survey fill post page
+	 * @param unknown $post
+	 */
+	public function printSurveyFillPost($post){
+		
+		(isset($_SESSION['userid']) ? $uid = $_SESSION['userid'] : $uid = 0);
+		
+		$sid = $_SESSION['survey']['id'];
+
+		foreach ($_SESSION['questions'] as $question){
+			$qid = $question['id'];
+			$qanswer =  $post[$qid];
+			$this->addResult($sid, $uid, $qid, $qanswer);
+
+		}
+		
+		$this->alertSuccess("Umfrage erfolgreich abgeschlossen. Sie k&ouml;nnen das Fenster schliessen.");
+		
+		unset($_SESSION['questions']);
+		unset($_SESSION['survey']);
 	}
 	
 	/**
@@ -194,7 +216,6 @@ class Navigation extends Querys {
 	 */
 	public function printProfile(){
 		if($_SESSION['userid'] != null) {
-			
 			$user = $this->getCurrentUser($_SESSION['userid']);
 		} else {
 			$user = null;
@@ -211,6 +232,22 @@ class Navigation extends Querys {
 		require $this->_config['sites'] . '/survey_create.php';
 	}
 	
+	/**
+	 * Creates the survey an show success
+	 */
+	public function printCreateSurveyPost($post){
+		
+		$umfrage_id = $this->addSurvey($_SESSION['userid'], $post['titel'], $post['beschreibung']);
+		
+		foreach ($post as $key => $value){
+			if(preg_match("/^(frage_)([0-9]+)$/", $key)) {
+				$this->addQuestion($umfrage_id, $value);
+			}
+		}
+		$this->addLink($umfrage_id);
+		
+		$this->alertSuccess("Umfrage wurde erfolgreich erstellt.");
+	}
 	
 }
 
