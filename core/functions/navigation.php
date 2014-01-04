@@ -172,7 +172,11 @@ class Navigation extends Querys {
 		$survey = $this->getSurveyByHash($hash);
 		$questions = $this->getQuestionByHash($hash);
 		
+		$_SESSION['questions'] = $questions;
+		
 		require $this->_config['sites'] . '/survey_fill.php';
+		
+		print_r($_SESSION['questions']);
 	
 	}
 	
