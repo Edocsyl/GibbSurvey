@@ -14,7 +14,6 @@ class Querys extends Functions {
 		return $this->insertDbAndGetLast("INSERT INTO umfragen (fk_user, titel, beschreibung) VALUES (:fk_user, :titel, :beschreibung)", array(
 				 array(':fk_user', $user_id, PDO::PARAM_INT), array(':titel', $titel, PDO::PARAM_STR), array(':beschreibung', $beschreibung, PDO::PARAM_STR)
 		));	
-		
 	}
 	
 	/**
@@ -71,6 +70,16 @@ class Querys extends Functions {
 		return $this->getArrayAssoc("SELECT DISTINCT r.fk_umfrage, u.titel, u.beschreibung, u.erstell_datum, l.hash FROM resultate AS r JOIN umfragen AS u ON r.fk_umfrage = u.id JOIN links AS l ON u.id = l.fk_umfrage WHERE r.fk_user =:user_id ORDER BY u.erstell_datum DESC", array(
 				array(':user_id', $user_id, PDO::PARAM_INT)
 		));
+	}
+	//set @fid = :question_id;
+	public function getResultFromQuestionId($question_id){
+		return $this->getRow("
+		SELECT ( SELECT count( id ) FROM resultate WHERE fk_frage =:question_id AND antwort =0 ) AS '0', 
+		( SELECT count( id ) FROM resultate WHERE fk_frage =:question_id AND antwort =25 ) AS '25', 
+		( SELECT count( id ) FROM resultate WHERE fk_frage =:question_id AND antwort =75 ) AS '75', 
+		( SELECT count( id ) FROM resultate WHERE fk_frage =:question_id AND antwort =100 ) AS '100', 
+		( SELECT count( id ) FROM resultate WHERE fk_frage =:question_id AND antwort IS NULL ) AS 'Null'", array(
+		array(':question_id', $question_id, PDO::PARAM_INT)));
 	}
 	
 	/**
@@ -158,7 +167,6 @@ class Querys extends Functions {
 		} else {
 			$this->alertError("Bite &uuml;berpr&uuml;fen Sie ihre Angaben.");
 		}
-		
 	}
 	
 	/**
@@ -170,7 +178,6 @@ class Querys extends Functions {
 		return $this->getRow("SELECT * FROM users WHERE id =:user_id", array(
 				array(':user_id', $user_id, PDO::PARAM_INT)
 		));
-		
 	}
 	
 	/**
@@ -194,40 +201,4 @@ class Querys extends Functions {
 				array(':email', $email, PDO::PARAM_STR)
 		));
 	}
-	
-	/*
-	Shizzle
-	 
-	SELECT (
-	SELECT count( id )
-	FROM `resultate`
-	WHERE fk_umfrage =1
-	AND antwort =0
-	) AS '0', (
-	
-	SELECT count( id )
-	FROM `resultate`
-	WHERE fk_umfrage =1
-	AND antwort =25
-	) AS '25', (
-	
-	SELECT count( id )
-	FROM `resultate`
-	WHERE fk_umfrage =1
-	AND antwort =75
-	) AS '75', (
-	
-	SELECT count( id )
-	FROM `resultate`
-	WHERE fk_umfrage =1
-	AND antwort =100
-	) AS '100', (
-	
-	SELECT count( id )
-	FROM `resultate`
-	WHERE fk_umfrage =1
-	AND antwort IS NULL
-	) AS 'NULL'
-	*/
-	
 }
