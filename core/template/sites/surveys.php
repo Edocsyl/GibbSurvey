@@ -63,9 +63,40 @@
 			  
               </tbody>
             </table>
-            <?php } else { echo "Keine Umfragen"; }?>
+            <?php } else { echo "Noch keine Umfrage erstellt."; }?>
             </div>
-    <div class="tab-pane" id="teilgenommen">In Process...</div>
+    <div class="tab-pane" id="teilgenommen">
+      <?php if($parsurveys != null){ ?> 
+       <table class="table table-hover">
+      <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Umfrage</th>
+                  <th>Erstellt</th>
+                  <th>Resultat</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+              <?php $ii = 1; foreach ($parsurveys as $parsurvey) { ?>
+            
+            	<tr>
+                  <td><?= $ii ?></td>
+                  <td><?= $parsurvey['titel'] ?></td>
+                  <td><?= date_format(date_create($parsurvey['erstell_datum']), 'd.m.Y H:i') ?></td>
+                  <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Ergebniss einsehen</button></td>
+                </tr>
+              
+			<?php $ii++; } ?> 
+              
+              </tbody>
+            </table>
+      
+      
+      <?php } else { echo "An keiner Umfrage teilgenommen."; }?>
+
+    
+    </div>
     </div>
     
 

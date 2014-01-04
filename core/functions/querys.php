@@ -57,9 +57,20 @@ class Querys extends Functions {
 	 * @return Ambigous <multitype:, multitype:>
 	 */
 	public function getCreatedSurveysFromUser($user_id){
-		 return $this->getArrayAssoc("SELECT a.id, a.titel, a.erstell_datum, l.hash FROM umfragen as a inner join links as l on a.id = l.fk_umfrage  WHERE `fk_user` =:user_id", array(
+		 return $this->getArrayAssoc("SELECT a.id, a.titel, a.erstell_datum, l.hash FROM umfragen as a inner join links as l on a.id = l.fk_umfrage  WHERE `fk_user` =:user_id ORDER BY a.erstell_datum DESC", array(
 		 		array(':user_id', $user_id, PDO::PARAM_INT)
 		 ));
+	}
+	
+	/**
+	 * Returns participated surveys
+	 * @param unknown $user_id
+	 * @return Ambigous <multitype:, multitype:>
+	 */
+	public function getParticipatedSurveyFromUser($user_id){
+		return $this->getArrayAssoc("SELECT DISTINCT r.fk_umfrage, u.titel, u.beschreibung, u.erstell_datum, l.hash FROM resultate AS r JOIN umfragen AS u ON r.fk_umfrage = u.id JOIN links AS l ON u.id = l.fk_umfrage WHERE r.fk_user =:user_id ORDER BY u.erstell_datum DESC", array(
+				array(':user_id', $user_id, PDO::PARAM_INT)
+		));
 	}
 	
 	/**
@@ -139,7 +150,6 @@ class Querys extends Functions {
 			array(':email', $post['email'], PDO::PARAM_STR), array(':password', sha1($post['password']), PDO::PARAM_STR)	
 		));
 		
-
 		if($i != null){
 			$this->alertSuccess("Erfolgreich eingeloggt.");
 			$_SESSION['userid'] = $i;
@@ -184,5 +194,40 @@ class Querys extends Functions {
 				array(':email', $email, PDO::PARAM_STR)
 		));
 	}
+	
+	/*
+	Shizzle
+	 
+	SELECT (
+	SELECT count( id )
+	FROM `resultate`
+	WHERE fk_umfrage =1
+	AND antwort =0
+	) AS '0', (
+	
+	SELECT count( id )
+	FROM `resultate`
+	WHERE fk_umfrage =1
+	AND antwort =25
+	) AS '25', (
+	
+	SELECT count( id )
+	FROM `resultate`
+	WHERE fk_umfrage =1
+	AND antwort =75
+	) AS '75', (
+	
+	SELECT count( id )
+	FROM `resultate`
+	WHERE fk_umfrage =1
+	AND antwort =100
+	) AS '100', (
+	
+	SELECT count( id )
+	FROM `resultate`
+	WHERE fk_umfrage =1
+	AND antwort IS NULL
+	) AS 'NULL'
+	*/
 	
 }

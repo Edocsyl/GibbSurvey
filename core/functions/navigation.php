@@ -207,6 +207,7 @@ class Navigation extends Querys {
 	 */
 	public function printSurveys(){
 		$surveys = $this->getCreatedSurveysFromUser($_SESSION['userid']);
+		$parsurveys = $this->getParticipatedSurveyFromUser($_SESSION['userid']);
 		require $this->_config['sites'] . '/surveys.php';
 	
 	}

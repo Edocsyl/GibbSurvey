@@ -10,7 +10,7 @@
     <!-- Le styles -->
     <link href="<?= $this->_config['css']; ?>/bootstrap.css" rel="stylesheet">
 
-    <!-- Le styles -->
+    <!-- Le styles extrashizzle -->
     <style type="text/css">
       body {
         padding-top: 40px;

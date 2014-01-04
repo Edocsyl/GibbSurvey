@@ -7,7 +7,11 @@ class Database {
 	 * @return PDO
 	 */
 	public function pdo(){
-		return new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);
+		try {
+			return new PDO('mysql:host=' . $this->_config['database']['host'] . ';dbname=' . $this->_config['database']['dbname'], $this->_config['database']['username'], $this->_config['database']['password']);	
+		} catch (PDOException $e){
+			die("Error: " . $e);
+		}
 	}
 	
 	/**
