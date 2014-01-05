@@ -9,7 +9,7 @@
 
     <!-- Le styles -->
     <link href="<?= $this->_config['css']; ?>/bootstrap.css" rel="stylesheet">
-
+    
     <!-- Le styles extrashizzle -->
     <style type="text/css">
       body {
@@ -45,6 +45,7 @@
     <link href="<?= $this->_config['css']; ?>/nprogress.css" rel="stylesheet">
     <link href="<?= $this->_config['css']; ?>/style.css" rel="stylesheet">
 	<link href="<?= $this->_config['js']; ?>/prettyCheckable/prettyCheckable.css" rel="stylesheet">
+	<script src="<?= $this->_config['js']; ?>/Chart.js"></script>
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">

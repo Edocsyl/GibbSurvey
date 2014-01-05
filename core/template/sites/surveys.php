@@ -54,7 +54,7 @@
                   <td><?= $survey['titel'] ?></td>
                   <td><?= date_format(date_create($survey['erstell_datum']), 'd.m.Y H:i') ?></td>
                   <td><a href="<?= $this->_config['basepath'] . "/s/f/" . $survey['hash'] ?>" target="_blank" class="btn btn-small btn-info" type="button">Umfrage &ouml;ffnen</a></td>
-                  <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Resultat einsehen</button></td>
+                  <td><button name="result_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Resultat einsehen</button></td>
                   <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small">Mehr...</button></td>
                 </tr>
               
@@ -84,7 +84,7 @@
                   <td><?= $ii ?></td>
                   <td><?= $parsurvey['titel'] ?></td>
                   <td><?= date_format(date_create($parsurvey['erstell_datum']), 'd.m.Y H:i') ?></td>
-                  <td><button name="umfrage_<?= $survey['hash'] ?>" uid="<?= $survey['hash'] ?>" type="button" class="btn btn-small btn-success">Ergebniss einsehen</button></td>
+                  <td><button name="result_<?= $parsurvey['hash'] ?>" uid="<?= $parsurvey['hash'] ?>" type="button" class="btn btn-small btn-success">Ergebniss einsehen</button></td>
                 </tr>
               
 			<?php $ii++; } ?> 
@@ -107,8 +107,4 @@
     </div>
     <div id="umfrageBody" class="modal-body">
     </div>
- 
     </div>
-    
-	 
-	 

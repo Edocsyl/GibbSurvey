@@ -10,7 +10,6 @@
     <script src="<?= $this->_config['js']; ?>/bootstrap-maxlength.js"></script>
     <script src="<?= $this->_config['js']; ?>/nprogress.js"></script>
     <script src="<?= $this->_config['js']; ?>/prettyCheckable/prettyCheckable.js"></script>
-    <script src="<?= $this->_config['js']; ?>/Chart.js"></script>
     <script src="<?= $this->_config['js']; ?>/custom.js"></script>
 
   </body>

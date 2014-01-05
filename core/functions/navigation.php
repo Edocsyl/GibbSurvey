@@ -2,6 +2,7 @@
 class Navigation extends Querys {
 	
 	public $_config = null;
+	public $_pdo = null;
 	private $_page = null;
 	private $_param1 = null;
 	private $_param2 = null;
@@ -15,6 +16,7 @@ class Navigation extends Querys {
 		$this->_param2 = $param2;
 		$this->_param3 = $param3;
 		$this->_post = $post;
+		$this->_pdo = $this->pdo();
 		
 	}
 	
@@ -44,6 +46,9 @@ class Navigation extends Querys {
 				break;
 			case 'getquestions':
 				echo json_encode($this->getQuestionByHash($this->_param2));
+				break;
+			case 'getresult':
+				echo json_encode($this->getResultFromQuestionId($this->_param2));
 				break;
 			default:
 				break;
@@ -210,8 +215,6 @@ class Navigation extends Querys {
 		$parsurveys = $this->getParticipatedSurveyFromUser($_SESSION['userid']);
 		
 		require $this->_config['sites'] . '/surveys.php';
-		
-		print_r($this->getResultFromQuestionId(18));
 	}
 	
 	/**

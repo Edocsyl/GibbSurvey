@@ -71,7 +71,12 @@ class Querys extends Functions {
 				array(':user_id', $user_id, PDO::PARAM_INT)
 		));
 	}
-	//set @fid = :question_id;
+	
+	/**
+	 * 
+	 * @param unknown $question_id
+	 * @return mixed
+	 */
 	public function getResultFromQuestionId($question_id){
 		return $this->getRow("
 		SELECT ( SELECT count( id ) FROM resultate WHERE fk_frage =:question_id AND antwort =0 ) AS '0', 

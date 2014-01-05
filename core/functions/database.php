@@ -21,7 +21,7 @@ class Database {
 	 * @return string
 	 */
 	public function insertDbAndGetLast($query, $parameter){
-		$pdo = $this->pdo();
+		$pdo = $this->_pdo;
 		$stm = $pdo->prepare($query);
 		foreach ($parameter as $p){
 			$stm->bindParam($p[0], $p[1], $p[2]);
@@ -37,7 +37,7 @@ class Database {
 	 * @return PDOStatement
 	 */
 	public function insertDb($query, $parameter){
-		$stm = $this->pdo()->prepare($query);
+		$stm = $this->_pdo->prepare($query);
 		foreach ($parameter as $p){
 			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
@@ -88,7 +88,7 @@ class Database {
 	 * @return PDOStatement
 	 */
 	public function prep($query, $parameter){
-		$stm = $this->pdo()->prepare($query);
+		$stm = $this->_pdo->prepare($query);
 		foreach ($parameter as $p){
 			$stm->bindParam($p[0], $p[1], $p[2]);
 		}
