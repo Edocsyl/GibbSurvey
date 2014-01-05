@@ -3,3 +3,5 @@
 
 
 
+	
+<div id="chartContainerXY" style="width: 100%; height: 440px;"></div>
