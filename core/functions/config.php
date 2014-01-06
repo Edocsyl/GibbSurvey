@@ -27,7 +27,7 @@ $config = array(
 			'host' 		=> 'localhost',
 			'username' 	=> 'root',
 			'password'	=> '',
-			'dbname' 	=> 'GibbSurvey',
+			'dbname' 	=> 'gibbsurvey',
 		),
 		
 		
