@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteBase /Survey-Tool
+RewriteBase /GibbSurvey
 
 
 RewriteRule ^/?([a-z]+)$ index.php?page=$1 [L]

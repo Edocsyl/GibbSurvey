@@ -12,14 +12,14 @@ $config = array(
 		'copyright'		=>	'&copy; '.date("Y").' Kaj Bossard | <a href="https://github.com/Edocsyl/GibbSurvey" target="_blank">Github</a>',
 		
 		
-		'basepath' 		=>	'http://localhost/Survey-Tool',
+		'basepath' 		=>	'/GibbSurvey',
 		
 		
 		'sites'			=>	'/core/template/sites',
 		'html'			=>	'/core/template/html',
-		'css'			=>	'http://localhost/Survey-Tool/core/template/css',
-		'js'			=>	'http://localhost/Survey-Tool/core/template/js',
-		'img'			=>	'http://localhost/Survey-Tool/core/template/img',
+		'css'			=>	'/GibbSurvey/core/template/css',
+		'js'			=>	'/GibbSurvey/core/template/js',
+		'img'			=>	'/GibbSurvey/core/template/img',
 		
 		
 		
@@ -27,7 +27,7 @@ $config = array(
 			'host' 		=> 'localhost',
 			'username' 	=> 'root',
 			'password'	=> '',
-			'dbname' 	=> 'umfrage',
+			'dbname' 	=> 'GibbSurvey',
 		),
 		
 		
