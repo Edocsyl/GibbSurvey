@@ -13,7 +13,6 @@ class Functions extends Database {
 	 * Logout the user
 	 */
 	public function logoutUser(){
-		//session_unset();
 		$this->log($_SESSION['userid'], "logout");
 		session_destroy();
 		$this->alertSuccess("Erfolgreich ausgeloggt.");
