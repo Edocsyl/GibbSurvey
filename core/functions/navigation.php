@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * @author Kaj Bossard <kaj@edocsyl.ch>
+ * @version 1.0
+ * @category Navigation file
+ * @copyright Copyright (c) 2014, gigaIT.net
+ */
+
 class Navigation extends Querys {
 	
 	public $_config = null;
@@ -9,6 +17,15 @@ class Navigation extends Querys {
 	private $_param3 = null;
 	private $_post = null;
 	
+	/**
+	 * App Constructor
+	 * @param array $config
+	 * @param string $page
+	 * @param string $param1
+	 * @param string $param2
+	 * @param string $param3
+	 * @param array $post
+	 */
 	public function __construct($config, $page = null, $param1 = null, $param2 = null, $param3 = null, $post){
 		$this->_config = $config;
 		$this->_page = $page;
@@ -172,6 +189,7 @@ class Navigation extends Querys {
 	
 	/**
 	 * Shows the survey fill page
+	 * @param string $hash
 	 */
 	public function printSurveyFill($hash){
 		$survey = $this->getSurveyByHash($hash);
@@ -186,7 +204,7 @@ class Navigation extends Querys {
 	
 	/**
 	 * Show the survey fill post page
-	 * @param unknown $post
+	 * @param array $post
 	 */
 	public function printSurveyFillPost($post){
 		
@@ -240,6 +258,7 @@ class Navigation extends Querys {
 	
 	/**
 	 * Creates the survey an show success
+	 * @param array $post
 	 */
 	public function printCreateSurveyPost($post){
 		

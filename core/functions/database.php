@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @author Kaj Bossard <kaj@edocsyl.ch>
+ * @version 1.0
+ * @category Database file
+ * @copyright Copyright (c) 2014, gigaIT.net
+ */
+
 class Database {
 	
 	/**
@@ -16,8 +23,8 @@ class Database {
 	
 	/**
 	 * Insert a statement and returns the id
-	 * @param unknown $query
-	 * @param unknown $parameter
+	 * @param string $query
+	 * @param array $parameter
 	 * @return string
 	 */
 	public function insertDbAndGetLast($query, $parameter){
@@ -32,8 +39,8 @@ class Database {
 	
 	/**
 	 * Insert a statement
-	 * @param unknown $query
-	 * @param unknown $parameter
+	 * @param string $query
+	 * @param array $parameter
 	 * @return PDOStatement
 	 */
 	public function insertDb($query, $parameter){
@@ -47,8 +54,8 @@ class Database {
 	
 	/**
 	 * Executes a sql statement and returns an array
-	 * @param unknown $query
-	 * @param unknown $parameter
+	 * @param string $query
+	 * @param array $parameter
 	 * @return multitype:
 	 */
 	public function getArrayAssoc($query, $parameter){
@@ -59,8 +66,8 @@ class Database {
 	
 	/**
 	 * Executes a sql statement and returns one row
-	 * @param unknown $query
-	 * @param unknown $parameter
+	 * @param string $query
+	 * @param array $parameter
 	 * @return mixed
 	 */
 	public function getRow($query, $parameter){
@@ -71,8 +78,8 @@ class Database {
 	
 	/**
 	 * Executes a slq statement and returns one column
-	 * @param unknown $query
-	 * @param unknown $parameter
+	 * @param string $query
+	 * @param array $parameter
 	 * @return string
 	 */
 	public function getColumn($query, $parameter){
@@ -83,8 +90,8 @@ class Database {
 	
 	/**
 	 * Helper function to prepare sql statements
-	 * @param unknown $query
-	 * @param unknown $parameter
+	 * @param string $query
+	 * @param array $parameter
 	 * @return PDOStatement
 	 */
 	public function prep($query, $parameter){

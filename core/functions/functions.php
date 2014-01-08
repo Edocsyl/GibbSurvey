@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Kaj Bossard <kaj@edocsyl.ch>
+ * @version 1.0
+ * @category Functions file
+ * @copyright Copyright (c) 2014, gigaIT.net
+ */
 
 class Functions extends Database {
 	
@@ -37,7 +43,7 @@ class Functions extends Database {
 	
 	/**
 	 * Checks if user is logged in
-	 * @return boolean|unknown
+	 * @return boolean|userid
 	 */
 	public function isLoggedIn(){
 		if($_SESSION['userid'] == null){
@@ -49,7 +55,7 @@ class Functions extends Database {
 	
 	/**
 	 * Shows success alerts
-	 * @param unknown $msg
+	 * @param string $msg
 	 */
 	public function alertSuccess($msg){
 		echo '<div class="alert alert-success">'.$msg.'</div>';
@@ -57,7 +63,7 @@ class Functions extends Database {
 	
 	/**
 	 * Shows error alerts
-	 * @param unknown $msg
+	 * @param string $msg
 	 */
 	public function alertError($msg){
 		echo '<div class="alert alert-error">'.$msg.'</div>';

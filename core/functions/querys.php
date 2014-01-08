@@ -1,13 +1,20 @@
 <?php
 
+/**
+ * @author Kaj Bossard <kaj@edocsyl.ch>
+ * @version 1.0
+ * @category Querys file
+ * @copyright Copyright (c) 2014, gigaIT.net
+ */
+
 class Querys extends Functions {
 
 	
 	/**
 	 * Adds a survey
-	 * @param unknown $user_id
-	 * @param unknown $titel
-	 * @param unknown $beschreibung
+	 * @param int $user_id
+	 * @param string $titel
+	 * @param string $beschreibung
 	 * @return string
 	 */
 	public function addSurvey($user_id, $titel, $beschreibung){
@@ -18,8 +25,8 @@ class Querys extends Functions {
 	
 	/**
 	 * Adds a question to a survey
-	 * @param unknown $survey_id
-	 * @param unknown $question
+	 * @param int $survey_id
+	 * @param string $question
 	 */
 	public function addQuestion($survey_id, $question){
 		$this->insertDb("INSERT INTO fragen (fk_umfrage, frage) VALUES (:fk_umfrage, :question)", array(
@@ -29,7 +36,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Adds a survey link
-	 * @param unknown $survey_id
+	 * @param int $survey_id
 	 */
 	public function addLink($survey_id){
 		$this->insertDb("INSERT INTO links (fk_umfrage, hash) VALUES (:fk_umfrage, :hash)", array(
@@ -39,10 +46,10 @@ class Querys extends Functions {
 	
 	/**
 	 * Add a result
-	 * @param unknown $survey_id
-	 * @param unknown $user_id
-	 * @param unknown $question_id
-	 * @param unknown $answer
+	 * @param int $survey_id
+	 * @param int $user_id
+	 * @param int $question_id
+	 * @param string $answer
 	 */
 	public function addResult($survey_id, $user_id, $question_id, $answer = null){
 		$this->insertDb("INSERT INTO resultate (fk_umfrage, fk_frage, fk_user, antwort) VALUES (:survey_id, :question_id, :user_id, :answer)", array(
@@ -52,7 +59,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Returns from user created surveys
-	 * @param unknown $user_id
+	 * @param int $user_id
 	 * @return Ambigous <multitype:, multitype:>
 	 */
 	public function getCreatedSurveysFromUser($user_id){
@@ -63,7 +70,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Returns participated surveys
-	 * @param unknown $user_id
+	 * @param int $user_id
 	 * @return Ambigous <multitype:, multitype:>
 	 */
 	public function getParticipatedSurveyFromUser($user_id){
@@ -74,7 +81,7 @@ class Querys extends Functions {
 	
 	/**
 	 * 
-	 * @param unknown $question_id
+	 * @param int $question_id
 	 * @return mixed
 	 */
 	public function getResultFromQuestionId($question_id){
@@ -89,7 +96,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Returns survey questions
-	 * @param unknown $survey_id
+	 * @param int $survey_id
 	 * @return Ambigous <multitype:, multitype:>
 	 */
 	public function getQuestionBySurveyId($survey_id){
@@ -100,7 +107,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Returns survey questions
-	 * @param unknown $hash
+	 * @param string $hash
 	 * @return Ambigous <multitype:, multitype:>
 	 */
 	public function getQuestionByHash($hash){
@@ -111,7 +118,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Returns survey information 
-	 * @param unknown $hash
+	 * @param string $hash
 	 * @return mixed
 	 */
 	public function getSurveyByHash($hash){
@@ -122,7 +129,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Register a new user
-	 * @param unknown $post
+	 * @param array $post
 	 */
 	public function registerUser($post){
 		$password = sha1($post['password']);
@@ -146,8 +153,8 @@ class Querys extends Functions {
 	
 	/**
 	 * Log user activities
-	 * @param unknown $userId
-	 * @param unknown $log
+	 * @param int $userId
+	 * @param string $log
 	 */
 	public function log($userId, $log){
 		$this->insertDb("INSERT INTO log (fk_user, log) VALUES (:user_id, :log)", array(
@@ -157,7 +164,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Login a user
-	 * @param unknown $post
+	 * @param array $post
 	 */
 	public function loginUser($post){
 		$i = $this->getColumn("SELECT id FROM users WHERE email =:email AND password =:password", array(
@@ -176,7 +183,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Get user data by id of the user
-	 * @param unknown $user_id
+	 * @param int $user_id
 	 * @return mixed
 	 */
 	public function getCurrentUser($user_id){
@@ -187,7 +194,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Get user id by email adress
-	 * @param unknown $email
+	 * @param string $email
 	 * @return mixed
 	 */
 	public function getUserIdByEmail($email){
@@ -198,7 +205,7 @@ class Querys extends Functions {
 	
 	/**
 	 * Checks if email adress already exists
-	 * @param unknown $email
+	 * @param string $email
 	 * @return boolean
 	 */
 	public function emailExists($email){
