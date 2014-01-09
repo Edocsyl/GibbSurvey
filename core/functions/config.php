@@ -32,7 +32,7 @@ $config = array(
 			'host' 		=> 'localhost',
 			'username' 	=> 'root',
 			'password'	=> '',
-			'dbname' 	=> 'gibbsurvey',
+			'dbname' 	=> 'umfrage_kaj_bossard',
 		),
 		
 		
